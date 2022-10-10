@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">alarm</string>
+    <string name="tap_button">tap!</string>
+    <string name="tap_count">tap_count</string>
+    <string name="alam_fastest">00시간 00분 후에 알람이 울립니다</string>
+    <string name="alam_fastest_alam">00월 00일 (월) 오전 00:00</string>
+    <string name="alam_time_text">오전 00:00</string>
 </resources>
