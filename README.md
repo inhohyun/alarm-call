@@ -1,2 +1,2 @@
 # alarm-public
-![header](https://capsule-render.vercel.app/api?type=egg&color=auto&height=5&section=header&text=최소 A+만 주세요&fontSize=30)
+<img src="https://capsule-render.vercel.app/api?type=wave&color=auto&height=300&section=header&text=최소%20A+만%20주세요&fontSize=90" />
