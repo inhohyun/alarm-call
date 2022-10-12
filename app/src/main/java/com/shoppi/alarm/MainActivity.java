@@ -53,6 +53,10 @@ public class MainActivity extends AppCompatActivity {
 
                 Toast.makeText(MainActivity.this,"알람이 저장되었습니다.",Toast.LENGTH_LONG).show();
 
+                //저장 클릭시 메인화면으로 전환
+                Intent main_intent = new Intent(this, Maintest_Activity.class);
+                startActivity(main_intent);
+
             }
         });
     }
