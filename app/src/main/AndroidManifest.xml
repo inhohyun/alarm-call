@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Alarm">
         <activity
-            android:name=".Maintest_Activity"
+            android:name="com.shoppi.alarm.Maintest_Activity"
             android:exported="true">
             <intent-filter>
 <!--                android.intent.action.MAIN = 어플이 시작할때 활동 시작-->
@@ -19,8 +19,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"> </activity>
-        <receiver android:name=".AlarmReceiver"/>
+        <activity android:name="com.shoppi.alarm.MainActivity"> </activity>
+        <receiver android:name="com.shoppi.alarm.AlarmReceiver"/>
 
     </application>
 

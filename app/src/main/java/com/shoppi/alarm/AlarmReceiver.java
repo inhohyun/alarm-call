@@ -13,6 +13,8 @@ import android.os.Build;
 
 import androidx.core.app.NotificationCompat;
 
+import com.shoppi.roomdatabase_sample.R;
+
 public class AlarmReceiver   extends BroadcastReceiver {
 
 

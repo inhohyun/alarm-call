@@ -8,6 +8,8 @@ import android.widget.Button;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.shoppi.roomdatabase_sample.R;
+
 public class Maintest_Activity extends AppCompatActivity {
     Button set_button;
 
@@ -18,6 +20,7 @@ public class Maintest_Activity extends AppCompatActivity {
         setContentView(R.layout.alam_main);
         set_button=   (Button)findViewById(R.id.alam_plus_btn);
 
+        //메인화면에서 시간 설정화면으로 전환
         set_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
