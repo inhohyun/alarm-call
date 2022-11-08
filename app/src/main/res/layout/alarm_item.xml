@@ -18,37 +18,13 @@
             android:padding="6dp">
 
             <TextView
-                android:id="@+id/item_alarm_time"
+                android:id="@+id/alarm_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="00:00"
                 android:textSize="36sp"/>
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/item_alarm_recurring"
-                android:layout_margin="2dp"/>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_margin="2dp">
-
-                <TextView
-                    android:id="@+id/item_alarm_recurringDays"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="10sp" />
-
-                <TextView
-                    android:id="@+id/item_alarm_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="12sp"/>
-
-            </LinearLayout>
 
             <Switch
                 android:id="@+id/item_alarm_started"

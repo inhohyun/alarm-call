@@ -15,28 +15,20 @@ import java.util.List;
 public interface AlarmDao {
 
     @Insert //삽입
-    void setInsertAlarm(Alarm alarm);
+    void Insert(Alarm alarm);
 
     @Update //수정
-    void setUpdateAlarm(Alarm alarm);
+    void Update(Alarm alarm);
 
     @Delete // 삭제
-    void setDeleteAlarm(Alarm alarm);
+    void Delete(Alarm alarm);
 
-    //조회 쿼리
-    @Query("SELECT * FROM alarm_table")// 쿼리 : 데이터베이스에 요청하는 명령문
-         List<Alarm> getAlarmAll();
+    @Query("SELECT * FROM alarm_table")
+    LiveData<List<Alarm>> getAll(); //LiveData
 
-//    @Insert
-//    void insert(Alarm alarm);
-//
-//
-//    @Query("DELETE FROM alarm_table")
-//    void deleteAll();
-//
-//    LiveData<List<Alarm>> getAlarms();
-//
-//    @Update
-//    void update(Alarm alarm);
+    //삭제 쿼리
+    @Query("DELETE FROM alarm_table")
+    void deleteAll();
+
 
 }

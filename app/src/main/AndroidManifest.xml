@@ -22,6 +22,7 @@
         <activity android:name="com.shoppi.alarm.MainActivity"> </activity>
         <receiver android:name="com.shoppi.alarm.AlarmReceiver"/>
 
+
     </application>
 
 </manifest>
