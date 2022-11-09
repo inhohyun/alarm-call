@@ -60,6 +60,8 @@ public class Maintest_Activity extends AppCompatActivity {
         adapter = new RecyclerAdapter(db);
         recyclerView.setAdapter(adapter);
 
+        initSwipe();
+
         //UI 갱신 (라이브데이터 Observer 이용, 해당 디비값이 변화가생기면 실행됨), 없으면 recyclerview 안 뜸
         db.alarmDao().getAll().observe(this, new Observer<List<Alarm>>() {
             @Override
@@ -139,4 +141,6 @@ public class Maintest_Activity extends AppCompatActivity {
 
 
     }
+
+
 }
