@@ -126,17 +126,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-//        //데이터 수정
-//        Alarm alarm2 = new Alarm(); // 객체 인스턴스 생성
-//        alarm2.setAlarmid(1); // 어떤 id 값을 참조할 것인지, 기본키 참조
-//        alarm2.setHour(mHour);
-//        alarm2.setMinute(mMinute);
-//        mAlarmDao.setUpdateAlarm(alarm2);//userDao에 만든 setUpdateAlarm를 가져와 id(Primary key)가 참조하는 값을 위의 내용으로 수정
-//
-//        //데이터 삭제
-//        Alarm alarm3 = new Alarm();
-//        alarm3.setAlarmid(2); // 참조할 기본키
-//        mAlarmDao.setDeleteAlarm(alarm3); // 참조하는 값을 삭제제
+
     }
 
 

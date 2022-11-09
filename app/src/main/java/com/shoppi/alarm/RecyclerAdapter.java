@@ -77,14 +77,14 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             alarm_time.setText(alarm.getHour()+":"+alarm.getMinute());
         }
 
-        //데이터 편집, 보류
-//        public void editData(int Hour, int Minute){
-//            new Thread(() -> {
-//                items.get(index).setHour(Hour);
-//                items.get(index).setMinute(Minute);
-//                db.alarmDao().setUpdateAlarm(items.get(index));
-//            }).start();
-//        }
+       // 데이터 편집, 보류
+        public void editData(int Hour, int Minute){
+            new Thread(() -> {
+                items.get(index).setHour(Hour);
+                items.get(index).setMinute(Minute);
+                db.alarmDao().Update(items.get(index));
+            }).start();
+        }
 
 
     }
