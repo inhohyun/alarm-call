@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +19,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.shoppi.alarm.Moon.WheaterActivity;
 import com.shoppi.alarm.db.Alarm;
 import com.shoppi.alarm.db.AlarmDao;
 import com.shoppi.alarm.db.AlarmDatabase;
@@ -39,6 +41,10 @@ public class Maintest_Activity extends AppCompatActivity {
 //        이 코드를 생략하면 이후로 작성된 코드만 동작함을 의미
         super.onCreate(savedInstanceState);
         setContentView(R.layout.alam_main);
+        WheaterActivity.InitContext(this);
+
+        WheaterActivity w = new WheaterActivity();
+        w.Start();
 
         set_button=   (Button)findViewById(R.id.alam_plus_btn);
         recyclerView = (RecyclerView) findViewById(R.id.rv_view);
@@ -51,7 +57,6 @@ public class Maintest_Activity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
 
         db = AlarmDatabase.getDatabase(this);
         recyclerView.setHasFixedSize(true);
