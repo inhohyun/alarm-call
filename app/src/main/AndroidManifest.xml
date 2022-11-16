@@ -12,6 +12,7 @@
             android:name="com.shoppi.alarm.Maintest_Activity"
             android:exported="true">
             <intent-filter>
+
 <!--                android.intent.action.MAIN = 어플이 시작할때 활동 시작-->
                 <action android:name="android.intent.action.MAIN" />
 <!--                카테고리.LAUNCHER = 액티비티가 어플리케이션에 표시
@@ -20,9 +21,10 @@
             </intent-filter>
         </activity>
         <activity android:name="com.shoppi.alarm.MainActivity"> </activity>
+        <activity android:name="com.shoppi.alarm.onoff.SwitchButton"> </activity>
         <receiver android:name="com.shoppi.alarm.AlarmReceiver"/>
 
 
     </application>
-
+    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>

@@ -1,5 +1,8 @@
 package com.shoppi.alarm;
 
+
+import static com.shoppi.roomdatabase_sample.R.id.alarm_start;
+
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -9,7 +12,6 @@ import android.graphics.RectF;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,7 +21,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.shoppi.alarm.db.Alarm;
-import com.shoppi.alarm.db.AlarmDao;
+
 import com.shoppi.alarm.db.AlarmDatabase;
 import com.shoppi.roomdatabase_sample.R;
 
@@ -27,7 +29,6 @@ import java.util.List;
 
 public class Maintest_Activity extends AppCompatActivity {
     private Button set_button;
-
     private RecyclerAdapter adapter;
     private RecyclerView recyclerView;
     private Paint p = new Paint();
@@ -40,9 +41,11 @@ public class Maintest_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.alam_main);
 
+
+
         set_button=   (Button)findViewById(R.id.alam_plus_btn);
         recyclerView = (RecyclerView) findViewById(R.id.rv_view);
-
+        initSwipe();
         //플러스 버튼 클릭시
         set_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,8 +63,6 @@ public class Maintest_Activity extends AppCompatActivity {
         adapter = new RecyclerAdapter(db);
         recyclerView.setAdapter(adapter);
 
-        initSwipe();
-
         //UI 갱신 (라이브데이터 Observer 이용, 해당 디비값이 변화가생기면 실행됨), 없으면 recyclerview 안 뜸
         db.alarmDao().getAll().observe(this, new Observer<List<Alarm>>() {
             @Override
@@ -69,6 +70,8 @@ public class Maintest_Activity extends AppCompatActivity {
                 adapter.setItem(data);
             }
         });
+
+
     }
 
     //스와이프로 삭제
