@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <uses-permission android:name="android.permission.INTERNET" />
-
+<!--진동사용-->
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher_background"
@@ -18,15 +21,29 @@
 
 <!--                android.intent.action.MAIN = 어플이 시작할때 활동 시작-->
                 <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
+
 <!--                카테고리.LAUNCHER = 액티비티가 어플리케이션에 표시
                     액션 하나당 최소 한개의 카테고리가 있어야 한다.-->
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name="com.shoppi.alarm.MainActivity"> </activity>
-        <activity android:name="com.shoppi.alarm.onoff.SwitchButton"> </activity>
-        <receiver android:name="com.shoppi.alarm.AlarmReceiver"/>
 
+
+        <receiver android:name="com.shoppi.alarm.manage.AlarmReceiver"
+            android:enabled="true"
+            android:exported="true">
+
+<!--            android:exported="true"-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MEDIA_SCANNER_STARTED" />-->
+<!--            </intent-filter>-->
+        </receiver>
+        <service android:name="com.shoppi.alarm.RingtonePlayingService"
+            android:enabled="true"
+            android:exported="true">
+        </service>
 
     </application>
     <uses-permission android:name="android.permission.INTERNET" />

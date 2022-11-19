@@ -10,7 +10,7 @@
         android:layout_height="220dp"
         android:layout_marginTop="136dp"
         android:background="@drawable/button_tap"
-        android:text="@string/tap_button"
+
         android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.445"
@@ -22,7 +22,7 @@
         android:layout_width="160dp"
         android:layout_height="54dp"
         android:layout_marginTop="40dp"
-        android:text="@string/tap_count"
+
         android:gravity="center"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
