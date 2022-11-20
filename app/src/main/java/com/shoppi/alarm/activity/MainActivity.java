@@ -24,7 +24,7 @@ import com.shoppi.roomdatabase_sample.R;
 
 import java.util.Calendar;
 
-//알람 설정화면, 알람 울리는 역할
+//알람 설정화면, 알람 울리는 역할, fragment로 수정 예정(시간 없으면 그냥 activity로)
 public class MainActivity extends AppCompatActivity {
     private AlarmDao mAlarmDao; // 알람 인터페이스 전역변수로 인스턴스
     private Button save;
@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-                intent.putExtra("state", "on"); // state 값이 on이면 알림 시작, off면 중지
+            intent.putExtra("state", "on"); // state 값이 on이면 알림 시작, off면 중지
             //알람 리시버 호출
             AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
             PendingIntent alarmIntent = PendingIntent.getBroadcast(context, 1, intent, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -200,18 +200,22 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-    //알람을 중지하는 메소드, ringactivity에서 호출
-    public void stop(){
-        if (this.pendingIntent == null){
-            return;
-        }
-        //off로 바꿔서 알람리시버->service로 호출
-        this.alarmmanager.cancel(this.pendingIntent);
-        Intent intent = new Intent(context, AlarmReceiver.class);
-        intent.putExtra("state", "off");
-        sendBroadcast(intent);
-
-        this.pendingIntent = null;
-    }
-
+//    //알람을 중지하는 메소드, ringactivity에서 호출->pendingIntent를 안쓸꺼면 굳이?
+//    public void stop(){
+//        //그냥 pendingIntent 없이?
+////        if (this.pendingIntent == null){
+////            return;
+////        }
+//
+////        this.alarmmanager.cancel(this.pendingIntent);
+//        //off로 바꿔서 알람리시버->service로 호출
+//        Intent intent = new Intent(context, AlarmReceiver.class);
+//        //state에 off값을 보냄
+//        intent.putExtra("state", "off");
+//        //alarmreciver 호출
+//        sendBroadcast(intent);
+//
+////        this.pendingIntent = null;
+//    }
+//
 }

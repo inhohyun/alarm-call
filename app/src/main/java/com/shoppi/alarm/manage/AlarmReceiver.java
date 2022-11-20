@@ -15,6 +15,7 @@ public class AlarmReceiver   extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         this.context = context; // context 받아서 쓰기
         //서비스이름은 RingtonePlayingService인데 ringtone을 안써버렸네
+
         Intent sIntent = new Intent(context, RingtonePlayingService.class);
         context.startService(sIntent);
         sIntent.putExtra("state", intent.getStringExtra("state"));
@@ -26,7 +27,7 @@ public class AlarmReceiver   extends BroadcastReceiver {
         }
 
 
-        // intent로부터 전달받은 string
+        // intent로부터 전달받은 string->받아서 전달
         String get_yout_string = intent.getExtras().getString("state");
 
         // RingtonePlayingService 서비스 intent 생성
@@ -34,11 +35,7 @@ public class AlarmReceiver   extends BroadcastReceiver {
 
         // RingtonePlayinService로 extra string값 보내기
         service_intent.putExtra("state", get_yout_string);
-        // start the ringtone service
-
-
-         //   this.context.startForegroundService(service_intent);
-
+        //서비스 시작
             this.context.startService(service_intent);
 
     }
