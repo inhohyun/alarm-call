@@ -1,4 +1,4 @@
-package com.shoppi.alarm;
+package com.shoppi.alarm.activity;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.shoppi.alarm.activity.Maintest_Activity;
 import com.shoppi.alarm.db.Alarm;
 import com.shoppi.alarm.db.AlarmDao;
 import com.shoppi.alarm.db.AlarmDatabase;
@@ -199,10 +200,12 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+    //알람을 중지하는 메소드, ringactivity에서 호출
     public void stop(){
         if (this.pendingIntent == null){
             return;
         }
+        //off로 바꿔서 알람리시버->service로 호출
         this.alarmmanager.cancel(this.pendingIntent);
         Intent intent = new Intent(context, AlarmReceiver.class);
         intent.putExtra("state", "off");

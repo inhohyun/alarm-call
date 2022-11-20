@@ -1,22 +1,11 @@
 package com.shoppi.alarm.manage;
 
-import android.app.Notification;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.app.TaskStackBuilder;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.media.RingtoneManager;
 import android.os.Build;
 
-import androidx.core.app.NotificationCompat;
-
-import com.shoppi.alarm.MainActivity;
-import com.shoppi.alarm.Maintest_Activity;
-import com.shoppi.alarm.RingtonePlayingService;
-import com.shoppi.roomdatabase_sample.R;
+import com.shoppi.alarm.service.RingtonePlayingService;
 
 public class AlarmReceiver   extends BroadcastReceiver {
 
@@ -32,7 +21,9 @@ public class AlarmReceiver   extends BroadcastReceiver {
 
     //Oreo(26) 버전 이후부터 Background에서 실행을 금지해서 Foreground에서 실행해야된대
 
-               // context.startForegroundService(sIntent);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            context.startForegroundService(sIntent);
+        }
 
 
         // intent로부터 전달받은 string

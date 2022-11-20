@@ -15,7 +15,7 @@
         android:usesCleartextTraffic="true">
 <!--        usesCleartextTraffic : 통신을 위해 인터넷 권한을 추가해준다.-->
         <activity
-            android:name="com.shoppi.alarm.Maintest_Activity"
+            android:name="com.shoppi.alarm.activity.Maintest_Activity"
             android:exported="true">
             <intent-filter>
 
@@ -28,8 +28,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.shoppi.alarm.MainActivity"> </activity>
-
+        <activity android:name="com.shoppi.alarm.activity.MainActivity"> </activity>
+        <activity android:name="com.shoppi.alarm.activity.RingActivity"></activity>
 
         <receiver android:name="com.shoppi.alarm.manage.AlarmReceiver"
             android:enabled="true"
@@ -40,7 +40,7 @@
 <!--                <action android:name="android.intent.action.MEDIA_SCANNER_STARTED" />-->
 <!--            </intent-filter>-->
         </receiver>
-        <service android:name="com.shoppi.alarm.RingtonePlayingService"
+        <service android:name="com.shoppi.alarm.service.RingtonePlayingService"
             android:enabled="true"
             android:exported="true">
         </service>

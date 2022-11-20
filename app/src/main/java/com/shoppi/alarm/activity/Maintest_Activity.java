@@ -1,4 +1,4 @@
-package com.shoppi.alarm;
+package com.shoppi.alarm.activity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -12,8 +12,6 @@ import android.widget.Button;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -30,10 +28,16 @@ import java.util.List;
 //메인화면, 화면에 위젯들 띄우는 역할
 public class Maintest_Activity extends AppCompatActivity {
     private Button set_button;
+    private Button stop_test;
+
+
+
+
     private RecyclerAdapter adapter;
     private RecyclerView recyclerView;
     private Paint p = new Paint();
     private AlarmDatabase db;
+
     //설정화면을 위한 변수
     private final int Fragment1 =0;
 
@@ -60,24 +64,35 @@ public class Maintest_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.alam_main);
         WheaterActivity.InitContext(this);
-
 //        WheaterActivity w = new WheaterActivity();
 //        w.Start();
 
-
-
         set_button=   (Button)findViewById(R.id.alam_plus_btn);
         recyclerView = (RecyclerView) findViewById(R.id.rv_view);
+
+        stop_test = (Button) findViewById(R.id.stop_test);
         initSwipe();
+
+        stop_test.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent stopIntent = new Intent(getApplicationContext(), RingActivity.class);
+                startActivity(stopIntent);
+            }
+        });
 
         //플러스 버튼 클릭시
         set_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //service 테스트용 intent
+//                Intent test_intent = new Intent(getApplicationContext(), RingtonePlayingService.class);
+//                startService(test_intent);
+
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
 
-                //설정화면 호출
+                //설정화면 호출(fragment)
 //                FragmentView(Fragment1);
 
             }
@@ -107,15 +122,15 @@ public class Maintest_Activity extends AppCompatActivity {
 
     }
 
-    //설정화면 호출 메소드
-    private void FragmentView(int Fragment) {
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-
-        Fragment1 fragment = new Fragment1();
-        transaction.replace(R.id.fragment_container, fragment);
-        transaction.commit();
-
-    }
+//    //설정화면 호출 메소드
+//    private void FragmentView(int Fragment) {
+//        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+//
+//        Fragment1 fragment = new Fragment1();
+//        transaction.replace(R.id.fragment_container, fragment);
+//        transaction.commit();
+//
+//    }
 
 
     //스와이프로 삭제

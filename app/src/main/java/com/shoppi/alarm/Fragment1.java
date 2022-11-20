@@ -2,17 +2,12 @@ package com.shoppi.alarm;
 
 import static android.content.Context.ALARM_SERVICE;
 
-import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
-
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.icu.util.Calendar;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.SystemClock;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,14 +20,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.room.Room;
 
+import com.shoppi.alarm.activity.Maintest_Activity;
 import com.shoppi.alarm.db.Alarm;
 import com.shoppi.alarm.db.AlarmDao;
 import com.shoppi.alarm.db.AlarmDatabase;
 import com.shoppi.alarm.manage.AlarmReceiver;
 import com.shoppi.roomdatabase_sample.R;
-
-import java.text.SimpleDateFormat;
-import java.util.Locale;
 
 //fragment에서 정보를 저장
 public class Fragment1 extends Fragment {
