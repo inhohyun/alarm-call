@@ -38,11 +38,11 @@ public class Maintest_Activity extends AppCompatActivity {
     private Paint p = new Paint();
     private AlarmDatabase db;
 
-    //설정화면을 위한 변수
+    //설정화면을 위한 변수(Fragment)
     private final int Fragment1 =0;
 
 
-
+//스위치 버튼 관련 코드, 구현예정
     //  private AlarmDao dao;
 //  //Switch switchbutton;
 //    class visibilitySwitchListener implements CompoundButton.OnCheckedChangeListener{
@@ -64,8 +64,8 @@ public class Maintest_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.alam_main);
         WheaterActivity.InitContext(this);
-//        WheaterActivity w = new WheaterActivity();
-//        w.Start();
+        WheaterActivity w = new WheaterActivity();
+        w.Start();
 
         set_button=   (Button)findViewById(R.id.alam_plus_btn);
         recyclerView = (RecyclerView) findViewById(R.id.rv_view);
@@ -73,6 +73,7 @@ public class Maintest_Activity extends AppCompatActivity {
         stop_test = (Button) findViewById(R.id.stop_test);
         initSwipe();
 
+        //그냥 test용 버튼, 지울꺼임
         stop_test.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,14 +82,13 @@ public class Maintest_Activity extends AppCompatActivity {
             }
         });
 
+
         //플러스 버튼 클릭시
         set_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //service 테스트용 intent
-//                Intent test_intent = new Intent(getApplicationContext(), RingtonePlayingService.class);
-//                startService(test_intent);
 
+                //설정화면 호출(activity)
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
 
@@ -122,7 +122,7 @@ public class Maintest_Activity extends AppCompatActivity {
 
     }
 
-//    //설정화면 호출 메소드
+//    //설정화면 호출 메소드(transection), fragment로 교체시 사용될듯
 //    private void FragmentView(int Fragment) {
 //        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 //
@@ -177,7 +177,7 @@ public class Maintest_Activity extends AppCompatActivity {
                         float width = height / 3;
 
                         if (dX > 0) {
-                            //오른쪽으로 밀었을 때
+                            //오른쪽으로 밀었을 때의 기능 사용할꺼면 여기에 구현
 
                         } else {
                             p.setColor(Color.parseColor("#D32F2F"));

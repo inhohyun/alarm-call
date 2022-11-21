@@ -38,7 +38,10 @@ public class RingActivity extends AppCompatActivity {
                 //  main.stop();
                 Toast.makeText(RingActivity.this, "알람 중지", Toast.LENGTH_SHORT).show();
 
-                stopService(new Intent(RingActivity.this, RingtonePlayingService.class));
+                Intent stopIntent = new Intent(RingActivity.this, RingtonePlayingService.class);
+                //stopService로 호출하여 onDestroy부분을 실행
+                stopService(stopIntent);
+
 //                Intent intent = new Intent(getApplicationContext(), AlarmReceiver.class);
 //                //state에 off값을 보냄
 //                //putExtra -> intent 보내는 곳으로 value 값을 보냄
