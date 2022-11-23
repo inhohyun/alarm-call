@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/ellipse_1"
+    tools:context="com.shoppi.alarm.activity.Time"
+    >
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/timer"
+        android:text="시간"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="#4f5ea2"
+        android:layout_gravity="center_horizontal"
+        />
+
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+
+            <Button
+                android:id="@+id/stop_test"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:text="stop_test"
+                app:layout_constraintTop_toBottomOf="@id/fastest_alam_text"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/fastest_alam_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="52dp"
+                android:gravity="center"
+                android:text="@string/alam_fastest"
+                android:textSize="40sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="1dp" />
+
+            <android.widget.Button
+                android:id="@+id/alam_plus_btn"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/button_circle"
+                android:text="+"
+                android:textSize="33sp"
+                android:textColor="#fbeaeb"
+                android:contentDescription="@string/app_name"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/fastest_alam_text"
+                app:layout_constraintVertical_bias="0.277" />
+
+            <ScrollView
+                android:id="@+id/scrollView2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="288dp"
+                android:layout_weight="10"
+                android:fillViewport="false"
+                app:layout_constraintTop_toBottomOf="@+id/fastest_alam_text"
+                tools:layout_editor_absoluteX="31dp">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </ScrollView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </FrameLayout>
+
+
+    <!--        <ImageButton-->
+<!--        android:id="@+id/alam_sort"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:backgroundTint="#00FFFFFF"-->
+<!--        android:contentDescription="@string/alam_fastest"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.954"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/fastest_alam_name"-->
+<!--        app:srcCompat="@android:drawable/ic_menu_sort_by_size"-->
+<!--        tools:ignore="DuplicateSpeakableTextCheck" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/fastest_alam_name"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="@string/alam_fastest_alam"-->
+<!--        android:textAlignment="center"-->
+<!--        android:textSize="19sp" />-->
+
+
+    <!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+
+
+</LinearLayout>
