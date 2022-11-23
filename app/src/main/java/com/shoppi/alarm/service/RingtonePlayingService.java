@@ -137,7 +137,7 @@ public class RingtonePlayingService extends Service {
 
         //Toast를 활용해 onDestroy가 정상적으로 실행됨을 확인 -> 근데 소리는 왜 안꺼짐?
         Toast.makeText(this, "알람 종료", Toast.LENGTH_SHORT).show();
-        //이건 작동하는데 소리는 왜 안꺼짐?
+
         Intent j = new Intent(this, Maintest_Activity.class);
         j.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(j);
