@@ -13,7 +13,6 @@
         android:layout_margin="8dp">
 
         <LinearLayout
-            android:background="@drawable/button_test"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -24,8 +23,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="00:00"
-                android:textColor="#fbeaeb"
-                android:textStyle="normal"
                 android:textSize="36sp"/>
 
 

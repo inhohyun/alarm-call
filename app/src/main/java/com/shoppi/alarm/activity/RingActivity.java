@@ -21,8 +21,6 @@ public class RingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.running);
 
-//        MainActivity main = new MainActivity(); ->따로 메소드로 안 만들고 바로 적음
-
         clear = findViewById(R.id.btn_stop);
         //종료 버튼 클릭시 service에서 알람 종료
         clear.setOnClickListener(new View.OnClickListener() {
@@ -35,12 +33,11 @@ public class RingActivity extends AppCompatActivity {
 //                ((Fragment1) getSupportFragmentManager().findFragmentByTag("fragmentTag")).stop();
 
                 //Mainactivity에서 stop메소드를 호출
-                //  main.stop();
-                Toast.makeText(RingActivity.this, "알람 중지", Toast.LENGTH_SHORT).show();
-
-                Intent stopIntent = new Intent(RingActivity.this, RingtonePlayingService.class);
+                Intent stopIntent = new Intent(RingActivity.this, AlarmReceiver.class);
                 //stopService로 호출하여 onDestroy부분을 실행
-                stopService(stopIntent);
+                stopIntent.putExtra("state", "off");
+
+                sendBroadcast(stopIntent);
 
 //                Intent intent = new Intent(getApplicationContext(), AlarmReceiver.class);
 //                //state에 off값을 보냄

@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <uses-permission android:name="android.permission.INTERNET" />
+<!--연락처 사용권한-->
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
 <!--진동사용-->
     <uses-permission android:name="android.permission.VIBRATE"/>
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
@@ -30,7 +33,6 @@
         </activity>
         <activity android:name="com.shoppi.alarm.activity.MainActivity"> </activity>
         <activity android:name="com.shoppi.alarm.activity.RingActivity"></activity>
-        <activity android:name="com.shoppi.alarm.activity.Time"></activity>
 
         <receiver android:name="com.shoppi.alarm.manage.AlarmReceiver"
             android:enabled="true"

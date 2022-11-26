@@ -63,19 +63,14 @@ public class MainActivity extends AppCompatActivity {
         //저장버튼 클릭시
         save.setOnClickListener(new View.OnClickListener() {
 
-
             //getInstance를 사용하기위해 api 호출, 지우면 getIntance 부분에 빨간줄 뜰것임
             @RequiresApi(api = Build.VERSION_CODES.N)
-
             @Override
             public void onClick(View view) {
-
-                //저장 버튼 클릭시 메인화면으로 돌아옴
-                //일단 아래 if문은 alt enter한 것
                 // calendar에 시간 셋팅
                 calendar.set(java.util.Calendar.HOUR_OF_DAY, timePicker.getHour()); // 시간
                 calendar.set(java.util.Calendar.MINUTE, timePicker.getMinute()); // 분
-//                    calendar.set(Calendar.SECOND, 0); // 초
+
 
                 //현재시간보다 이전이면
                 if (calendar.before(android.icu.util.Calendar.getInstance())) {
@@ -91,7 +86,8 @@ public class MainActivity extends AppCompatActivity {
 
                 //일단 state로 값 없이 설정하는 것으로 바꿈
                 //state 없이 알람 구현->안쓰는 코드 삭제 예정
-                //이거 값 뭐 전달되는지 물어봤었나? -> state는 key값이고 on이 value 값임/            intent.putExtra("state", "on"); // state 값이 on이면 알림 시작, off면 중지
+                //이거 값 뭐 전달되는지 물어봤었나? -> state는 key값이고 on이 value 값임/
+                 intent.putExtra("state", "on"); // state 값이 on이면 알림 시작, off면 중지
 
                 //알람 리시버 호출
                 AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);

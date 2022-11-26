@@ -8,6 +8,9 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.IBinder;
 import android.os.Vibrator;
@@ -23,19 +26,20 @@ import com.shoppi.alarm.activity.RingActivity;
 import com.shoppi.roomdatabase_sample.R;
 
 public class RingtonePlayingService extends Service {
-
+    // private Vibrator vibrator;
     MediaPlayer mediaPlayer;
     boolean isRunning;
 
-    private Vibrator vibrator;
+    int startId;
 
+//1. 알람소리 ringtone으로 교체
+    //2. stop버튼 미작동 오류 수정
     @Override
     public void onCreate() {
         super.onCreate();
-        mediaPlayer = MediaPlayer.create(this, R.raw.alarm_sound1);
-
+        android.util.Log.i("alarm test","onCreate()");
         //진동 활성화 구현할꺼면 사용
-//        vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        //vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
 
     }
@@ -44,18 +48,60 @@ public class RingtonePlayingService extends Service {
 // service 재 실행시 여기부터 실행되므로 이 부분에 주요 코드를 몰아넣음
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        this.mediaPlayer = MediaPlayer.create(this, R.raw.alarm_sound1);
+
+
+        Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
+        Ringtone ringtone = RingtoneManager.getRingtone(getApplicationContext(), notification);
+
+        //intent에서 받아온 정보는 onStartCommand에서만 처리되므로 여기서 if문으로 play. stop 구분하기
+        //실행여부 log에서 보기
+
+        String getState = intent.getExtras().getString("state");
+        assert getState != null;
+        switch (getState) {
+            case "on":
+                this.startId = 1;
+                break;
+            case "off":
+                this.startId = 0;
+                break;
+            default:
+                this.startId = 0;
+                break;
+        }
+        startId = this.startId;
+        if (startId==1){
+            Log.d("AlarmService", "Alarm Start");
+            ringtone.play();
+            //알람 울리면 RingActivity 호출
+            Intent i = new Intent(this, RingActivity.class);
+            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(i);
+            isRunning = true;
+        }
+        else if(isRunning || startId==0){
+            Log.d("AlarmService", "Alarm Stop");
+            ringtone.stop(); // 이것만 실행이 안되는 이유?
+            //이 아래는 실행이 됨
+            isRunning = false;
+            stopSelf();
+            Intent j = new Intent(this, Maintest_Activity.class);
+            j.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(j);
+        }
+        else{
+
+        }
+
+        //서비스 재 시작시 알람이 꺼지도록?
+
+      //  mediaPlayer = MediaPlayer.create(this, R.raw.alarm_sound1);
+
         //미디어 반복여부
-        mediaPlayer.setLooping(true);
-        this.mediaPlayer.start();
+    //    mediaPlayer.setLooping(false);
+      //  this.mediaPlayer.start();
 
-        this.isRunning = true;
-        Log.d("AlarmService", "Alarm Start");
 
-        //알람 울리면 RingActivity 호출
-        Intent i = new Intent(this, RingActivity.class);
-        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(i);
 
 
         //아래 notification으로 Forground로 알람 울리는중... 보여줄라했는데 에러나서 일단 지움
@@ -107,9 +153,8 @@ public class RingtonePlayingService extends Service {
 ////        }
 
 ////        }
-//서비스 종료
 
-        return START_STICKY;
+        return START_NOT_STICKY;
     }
 
     //notification(팝업 알림) 쓸꺼면 활성화 -> 좀 손봐야됨
@@ -128,20 +173,14 @@ public class RingtonePlayingService extends Service {
 
 
     //RingActivity에서 stopService ->서비스 중지 요청 -> onDestroy호출 -> (서비스 중지)알람음 중지->intent는 먹는데 알람은 안꺼짐 : why?
-
     @Override
     public void onDestroy() {
-        super.onDestroy();
-        mediaPlayer.setLooping(false); // 반복해제 후 종료(그냥 종료하면 안되나?)
-        mediaPlayer.stop();
-
-        //Toast를 활용해 onDestroy가 정상적으로 실행됨을 확인 -> 근데 소리는 왜 안꺼짐?
+        android.util.Log.i("종료","onDestroy()");
         Toast.makeText(this, "알람 종료", Toast.LENGTH_SHORT).show();
-        //이건 작동하는데 소리는 왜 안꺼짐?
-        Intent j = new Intent(this, Maintest_Activity.class);
-        j.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(j);
+     //   mediaPlayer.stop();
+      //  ringtone.stop();
 
+        super.onDestroy();
     }
 
     @Nullable
