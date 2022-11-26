@@ -9,6 +9,14 @@ import android.graphics.RectF;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.os.Bundle;
+import android.os.Handler;
+import android.widget.TextView;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,6 +37,9 @@ import java.util.List;
 public class Maintest_Activity extends AppCompatActivity {
     private Button set_button;
     private Button stop_test;
+
+    private TextView TimerView; // 알람 시계 구현
+    private Timer mTimer;
 
 
 
@@ -72,6 +83,11 @@ public class Maintest_Activity extends AppCompatActivity {
 
         stop_test = (Button) findViewById(R.id.stop_test);
         initSwipe();
+
+        TimerView = findViewById(R.id.fastest_alam_text); // 현재 시간을 넣을 아이디
+        MainTimerTask timerTask = new MainTimerTask();
+        mTimer = new Timer();
+        mTimer.schedule(timerTask, 500, 1000);
 
         //그냥 test용 버튼, 지울꺼임
         stop_test.setOnClickListener(new View.OnClickListener() {
@@ -121,6 +137,47 @@ public class Maintest_Activity extends AppCompatActivity {
 
 
     }
+
+    private Handler mHandler = new Handler(); // 핸들러를 이용해서 현재 시간 표시
+
+    private Runnable mUpdateTimeTask = new Runnable() {
+        public void run() {
+
+            Date rightNow = new Date();
+            SimpleDateFormat formatter = new SimpleDateFormat( // 표현하고자 하는 시간 형태 지정
+                    "hh:mm:ss");
+            String dateString = formatter.format(rightNow);
+            TimerView.setText(dateString);
+
+        }
+    };
+
+    class MainTimerTask extends TimerTask {
+        public void run() {
+            mHandler.post(mUpdateTimeTask);
+        }
+    }
+    @Override
+    protected void onDestroy() {
+        mTimer.cancel();
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onPause() {
+        mTimer.cancel();
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        MainTimerTask timerTask = new MainTimerTask();
+        mTimer.schedule(timerTask, 500, 3000);
+        super.onResume();
+    }
+
+
+
 
 //    //설정화면 호출 메소드(transection), fragment로 교체시 사용될듯
 //    private void FragmentView(int Fragment) {
