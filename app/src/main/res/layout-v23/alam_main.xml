@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="52dp"
                 android:textStyle="bold"
-                android:gravity="center"
+
                 android:text="@string/alam_fastest"
                 android:textSize="40sp"
                 android:textColor="#4f5ea2"
