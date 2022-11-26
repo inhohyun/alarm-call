@@ -65,6 +65,7 @@
         android:gravity="center">
 
 
+
         <android.widget.Button
             android:id="@+id/alam_plus_btn"
             android:layout_width="53dp"
