@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="52dp"
                 android:textStyle="bold"
-                android:layout_marginLeft="120dp"
+                android:layout_marginLeft="119dp"
                 android:text="@string/alam_fastest"
                 android:textSize="40sp"
                 android:textColor="#4f5ea2"
