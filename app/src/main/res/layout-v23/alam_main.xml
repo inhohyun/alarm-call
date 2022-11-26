@@ -18,15 +18,11 @@
         android:textStyle="bold"
         android:text="Alarm" />
 
-    <FrameLayout
-        android:id="@+id/fragment_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1">
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="600dp">
 
             <TextView
                 android:id="@+id/fastest_alam_text"
@@ -34,22 +30,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="52dp"
                 android:gravity="center"
+                android:textStyle="bold"
+                android:layout_marginLeft="120dp"
                 android:text="@string/alam_fastest"
                 android:textSize="40sp"
+                android:textColor="#4f5ea2"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:layout_editor_absoluteX="1dp" />
 
-            <Button
-                android:id="@+id/alam_plus_btn"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@drawable/plus_button"
-                android:contentDescription="@string/app_name"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/fastest_alam_text"
-                app:layout_constraintVertical_bias="0.277" />
+
 
             <ScrollView
                 android:id="@+id/scrollView2"
@@ -68,7 +58,30 @@
             </ScrollView>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </FrameLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+
+
+        <android.widget.Button
+            android:id="@+id/alam_plus_btn"
+            android:layout_width="53dp"
+            android:layout_height="50dp"
+            android:background="@drawable/button_circle"
+            android:contentDescription="@string/app_name"
+            android:text="+"
+            android:textColor="#fbeaeb"
+            android:textSize="33sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintVertical_bias="0.4" />
+
+
+
+
+    </LinearLayout>
 
     <!--        <ImageButton-->
 <!--        android:id="@+id/alam_sort"-->
@@ -94,6 +107,9 @@
 
 
     <!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+
+
+
 
 
 </LinearLayout>
