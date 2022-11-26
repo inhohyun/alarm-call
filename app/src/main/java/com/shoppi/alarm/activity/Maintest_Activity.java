@@ -28,10 +28,6 @@ import java.util.List;
 //메인화면, 화면에 위젯들 띄우는 역할
 public class Maintest_Activity extends AppCompatActivity {
     private Button set_button;
-    private Button stop_test;
-
-
-
 
     private RecyclerAdapter adapter;
     private RecyclerView recyclerView;
@@ -70,18 +66,8 @@ public class Maintest_Activity extends AppCompatActivity {
         set_button=   (Button)findViewById(R.id.alam_plus_btn);
         recyclerView = (RecyclerView) findViewById(R.id.rv_view);
 
-        stop_test = (Button) findViewById(R.id.stop_test);
+
         initSwipe();
-
-        //그냥 test용 버튼, 지울꺼임
-        stop_test.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent stopIntent = new Intent(getApplicationContext(), RingActivity.class);
-                startActivity(stopIntent);
-            }
-        });
-
 
         //플러스 버튼 클릭시
         set_button.setOnClickListener(new View.OnClickListener() {
@@ -117,8 +103,6 @@ public class Maintest_Activity extends AppCompatActivity {
                 adapter.setItem(data);
             }
         });
-
-
 
     }
 

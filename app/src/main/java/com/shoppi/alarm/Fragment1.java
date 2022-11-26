@@ -42,9 +42,8 @@ public class Fragment1 extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
         view = inflater.inflate(R.layout.activity_main, container, false); // 레이아웃 연결
-
-        save = (Button) view.findViewById(R.id.save); // 맨 마지막에 저장하는 버튼
-        timePicker = (TimePicker) view.findViewById(R.id.time_picker); // 시간 설정
+        save =  view.findViewById(R.id.save); // 맨 마지막에 저장하는 버튼
+        timePicker =  view.findViewById(R.id.time_picker); // 시간 설정
 
         this.alarmanager = (AlarmManager) getActivity().getSystemService(ALARM_SERVICE);
         save.setOnClickListener(new View.OnClickListener() {
