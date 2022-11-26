@@ -36,7 +36,7 @@ public class RingActivity extends AppCompatActivity {
                 Intent stopIntent = new Intent(RingActivity.this, AlarmReceiver.class);
                 //stopService로 호출하여 onDestroy부분을 실행
                 stopIntent.putExtra("state", "off");
-
+                //off로
                 sendBroadcast(stopIntent);
 
 //                Intent intent = new Intent(getApplicationContext(), AlarmReceiver.class);

@@ -70,6 +70,7 @@ public class RingtonePlayingService extends Service {
                 break;
         }
         startId = this.startId;
+
         if (startId==1){
             Log.d("AlarmService", "Alarm Start");
             ringtone.play();
@@ -79,6 +80,7 @@ public class RingtonePlayingService extends Service {
             startActivity(i);
             isRunning = true;
         }
+
         else if(isRunning || startId==0){
             Log.d("AlarmService", "Alarm Stop");
             ringtone.stop(); // 이것만 실행이 안되는 이유?
@@ -89,6 +91,7 @@ public class RingtonePlayingService extends Service {
             j.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(j);
         }
+
         else{
 
         }

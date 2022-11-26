@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.shoppi.alarm.Fragment1;
 import com.shoppi.alarm.Moon.WheaterActivity;
 import com.shoppi.alarm.db.Alarm;
 import com.shoppi.alarm.db.AlarmDatabase;
@@ -34,9 +35,8 @@ public class Maintest_Activity extends AppCompatActivity {
     private Paint p = new Paint();
     private AlarmDatabase db;
 
-    //설정화면을 위한 변수(Fragment)
-    private final int Fragment1 =0;
 
+   Fragment1 fragment1;
 
 //스위치 버튼 관련 코드, 구현예정
     //  private AlarmDao dao;
@@ -59,9 +59,12 @@ public class Maintest_Activity extends AppCompatActivity {
 //        이 코드를 생략하면 이후로 작성된 코드만 동작함을 의미
         super.onCreate(savedInstanceState);
         setContentView(R.layout.alam_main);
-        WheaterActivity.InitContext(this);
-        WheaterActivity w = new WheaterActivity();
-        w.Start();
+
+        //  fragment1 = new Fragment1();
+
+//        WheaterActivity.InitContext(this);
+//        WheaterActivity w = new WheaterActivity();
+//        w.Start();
 
         set_button=   (Button)findViewById(R.id.alam_plus_btn);
         recyclerView = (RecyclerView) findViewById(R.id.rv_view);
@@ -74,18 +77,17 @@ public class Maintest_Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+
                 //설정화면 호출(activity)
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
 
                 //설정화면 호출(fragment)
 //                FragmentView(Fragment1);
+            //    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment1).commit();
 
             }
         });
-
-
-
 
         db = AlarmDatabase.getDatabase(this);
         recyclerView.setHasFixedSize(true);
