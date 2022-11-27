@@ -22,7 +22,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="600dp">
+            android:layout_height="550dp">
 
             <TextView
                 android:id="@+id/fastest_alam_text"
