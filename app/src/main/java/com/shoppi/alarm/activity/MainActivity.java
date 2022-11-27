@@ -41,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
     //+버튼을 눌렀을 때 실행되는 코드
     protected void onCreate(Bundle savedInstanceState) {
         this.context = this;
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         save = (Button) findViewById(R.id.save); // 맨 마지막에 저장하는 버튼
@@ -85,7 +84,6 @@ public class MainActivity extends AppCompatActivity {
                 calendar.set(Calendar.MINUTE, minute);
 
                 //일단 state로 값 없이 설정하는 것으로 바꿈
-                //state 없이 알람 구현->안쓰는 코드 삭제 예정
                 //이거 값 뭐 전달되는지 물어봤었나? -> state는 key값이고 on이 value 값임/
                  intent.putExtra("state", "on"); // state 값이 on이면 알림 시작, off면 중지
 
@@ -104,11 +102,6 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                 });
-
-                //Toast로 알람 시간 보여주기, 근데 굳이?라 일단 지움
-//                    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-DD HH:mm:ss", Locale.getDefault());
-//                    Toast.makeText(context, "Alarm : " + format.format(calendar.getTime()), Toast.LENGTH_SHORT).show(); // 일단 this로 들어갈 부분을 context로 엮긴함
-
 
                 Alarm alarm = new Alarm(); // 객체 인스턴스 생성
                 alarm.setHour(hour); // 설정한 알람 시간
