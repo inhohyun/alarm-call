@@ -5,40 +5,101 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/ellipse_1"
     tools:context="com.shoppi.alarm.activity.MainActivity">
 
-    <TextView
-
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="50dp"
-        android:textColor="#4f5ea2"
-        android:textSize="36sp"
-        android:textStyle="bold"
-        android:text="알람 설정" />
-
     <TimePicker
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:timePickerMode="spinner"
-        android:id="@+id/time_picker" />
-   <EditText
-       android:id="@+id/text_call"
-       android:layout_marginTop="50dp"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:hint="연동할 전화번호를 작성해주세요."
-       android:textColor="#4f5ea2"/>
-
-
-    <Button
-        android:id="@+id/save"
+        android:id="@+id/time_picker"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="저장"
-        />
+        android:layout_gravity="center"
+        android:theme="@style/CustomTimePicker"
+        android:timePickerMode="spinner" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/alarm_Day"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="내일 11월 29일 (화)"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/monDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="월"
+                android:layout_weight="1"
+                style="?android:attr/buttonBarButtonStyle" />
+            <Button
+                android:id="@+id/tuesDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="화"
+                android:layout_weight="1"
+                style="?android:attr/buttonBarButtonStyle" />
+            <Button
+                android:id="@+id/wednesDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="수"
+                android:layout_weight="1"
+                style="?android:attr/buttonBarButtonStyle" />
+            <Button
+                android:id="@+id/thursDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="목"
+                android:layout_weight="1"
+                style="?android:attr/buttonBarButtonStyle" />
+            <Button
+                android:id="@+id/friDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="금"
+                android:layout_weight="1"
+                style="?android:attr/buttonBarButtonStyle" />
+            <Button
+                android:id="@+id/saturDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="토"
+                android:layout_weight="1"
+                style="?android:attr/buttonBarButtonStyle" />
+            <Button
+                android:id="@+id/sunDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="일"
+                android:layout_weight="1"
+                style="?android:attr/buttonBarButtonStyle" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center">
+        <Button
+            android:id="@+id/save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="저장" />
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
 
 </LinearLayout>

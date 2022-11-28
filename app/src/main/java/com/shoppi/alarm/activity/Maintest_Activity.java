@@ -1,11 +1,6 @@
 package com.shoppi.alarm.activity;
 
-import static com.shoppi.alarm.activity.RingActivity.PERMISSIONS_CALL_PHONE;
-
-import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -14,11 +9,10 @@ import android.graphics.RectF;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -26,21 +20,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.shoppi.alarm.Fragment1;
 import com.shoppi.alarm.Moon.WheaterActivity;
-import com.shoppi.alarm.Moon.weather2;
 import com.shoppi.alarm.db.Alarm;
 import com.shoppi.alarm.db.AlarmDatabase;
 import com.shoppi.alarm.list.RecyclerAdapter;
 import com.shoppi.roomdatabase_sample.R;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
-
-
-import android.os.Handler;
-import android.widget.TextView;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Timer;
-import java.util.TimerTask;
 
 //메인화면, 화면에 위젯들 띄우는 역할
 public class Maintest_Activity extends AppCompatActivity {
@@ -48,14 +35,13 @@ public class Maintest_Activity extends AppCompatActivity {
 
     private RecyclerAdapter adapter;
     private RecyclerView recyclerView;
+    private TextView fastestAlarm;
     private Paint p = new Paint();
     private AlarmDatabase db;
-    private Button weather;
 
-    private TextView TimerView;
-    private Timer mTimer;
-Context context;
-//   Fragment1 fragment1;
+
+   Fragment1 fragment1;
+
 //스위치 버튼 관련 코드, 구현예정
     //  private AlarmDao dao;
 //  //Switch switchbutton;
@@ -78,54 +64,28 @@ Context context;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.alam_main);
 
-        //전화권한이 없다면 권한 받기
-        if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, PERMISSIONS_CALL_PHONE);
-        }
-
-
         //  fragment1 = new Fragment1();
 
-        WheaterActivity.InitContext(this);
-        WheaterActivity w = new WheaterActivity();
-        w.Start();
-
-        set_button=   (Button)findViewById(R.id.alam_plus_btn);
+//        WheaterActivity.InitContext(this);
+//        WheaterActivity w = new WheaterActivity();
+//        w.Start();
+        // 알람 추가 버튼
+        set_button = (Button)findViewById(R.id.alam_plus_btn);
+        // 알람 목록 아이템 뷰
         recyclerView = (RecyclerView) findViewById(R.id.rv_view);
-        weather = findViewById(R.id.btn_weather);
-
-        TimerView = findViewById(R.id.fastest_alam_text);
-       MainTimerTask timerTask = new MainTimerTask();
-        mTimer = new Timer();
-        mTimer.schedule(timerTask, 500, 1000);
-
-        //날씨정보 버튼 클릭시
-        weather.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //클릭시 날씨정보 엑티비티로 화면전환
-                Intent weather_intent = new Intent(getApplicationContext(), weather2.class);
-                startActivity(weather_intent);
-            }
-        });
-        
-        //스와이프 삭제 활성화
-        initSwipe();
+        // 가장 빨리 울리는 알람
+        fastestAlarm = (TextView) findViewById(R.id.fastest_alam_text);
 
         //플러스 버튼 클릭시
         set_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
                 //설정화면 호출(activity)
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
-
                 //설정화면 호출(fragment)
-//                FragmentView(Fragment1);
-            //    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment1).commit();
-
+                //  FragmentView(Fragment1);
+                //  getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment1).commit();
             }
         });
 
@@ -133,12 +93,15 @@ Context context;
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        adapter = new RecyclerAdapter(db, context);
+        adapter = new RecyclerAdapter(db);
         recyclerView.setAdapter(adapter);
 
+        // 스와이프 알람 삭제
         initSwipe();
+        // 가장 빨리 울리는 알람 텍스트 갱신
+        updateFastestAlarmText();
 
-        //UI 갱신 (라이브데이터 Observer 이용, 해당 디비값이 변화가생기면 실행됨), 없으면 recyclerview 안 뜸
+        // UI 갱신 (라이브데이터 Observer 이용, 해당 디비값이 변화가생기면 실행됨), 없으면 recyclerview 안 뜸
         db.alarmDao().getAll().observe(this, new Observer<List<Alarm>>() {
             @Override
             public void onChanged(List<Alarm> data) {
@@ -147,46 +110,11 @@ Context context;
         });
 
     }
-
-    private Handler mHandler = new Handler();
-
-    private Runnable mUpdateTimeTask = new Runnable() {
-        public void run() {
-
-            Date rightNow = new Date();
-            SimpleDateFormat formatter = new SimpleDateFormat(
-                    "hh:mm ");
-            String dateString = formatter.format(rightNow);
-            TimerView.setText(dateString);
-
-        }
-    };
-
-
-    class MainTimerTask extends TimerTask {
-        public void run() {
-            mHandler.post(mUpdateTimeTask);
-        }
+    // 가장 빨리 울리는 알람 갱신 ( db 에 날짜 추가되기 전 까지는 보류 )
+    private String updateFastestAlarmText() {
+        //List<> list =  db.alarmDao().getAll();
+        return null;
     }
-    @Override
-    protected void onDestroy() {
-        mTimer.cancel();
-        super.onDestroy();
-    }
-
-    @Override
-    protected void onPause() {
-        mTimer.cancel();
-        super.onPause();
-    }
-
-    @Override
-    protected void onResume() {
-        MainTimerTask timerTask = new MainTimerTask();
-        mTimer.schedule(timerTask, 500, 3000);
-        super.onResume();
-    }
-
 
 //    //설정화면 호출 메소드(transection), fragment로 교체시 사용될듯
 //    private void FragmentView(int Fragment) {
@@ -204,14 +132,10 @@ Context context;
             ItemTouchHelper.SimpleCallback simpleItemTouchCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT /* | ItemTouchHelper.RIGHT */)
 
             {
-
-
                 @Override
                 public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
                     return false;
                 }
-
-
                 @Override
                 public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
                     int position = viewHolder.getAdapterPosition();
@@ -262,15 +186,7 @@ Context context;
             };
             ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleItemTouchCallback);
             itemTouchHelper.attachToRecyclerView(recyclerView);
-
-
-
-
-
         }
-
-
-
 }
 
 
