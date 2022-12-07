@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="8dp"
         app:cardCornerRadius="6dp"
-        app:cardElevation="6dp"
-        android:layout_margin="8dp">
+        app:cardElevation="6dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:background="@drawable/ellipse_1"
+            android:orientation="horizontal"
             android:padding="6dp">
 
             <TextView
@@ -25,10 +25,15 @@
                 android:layout_height="wrap_content"
                 android:text="00:00"
                 android:textColor="#fbeaeb"
-                android:textStyle="normal"
-                android:textSize="36sp"/>
+                android:textSize="36sp"
+                android:textStyle="normal" />
 
 
+            <TextView
+                android:id="@+id/num_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="저장된 번호" />
 
             <Switch
                 android:id="@+id/alarm_start"

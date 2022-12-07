@@ -10,14 +10,18 @@ public class Alarm {
     private int alarmid = 0; // 생성된 알람 시간의 고유 id 값
     private int hour, minute; // 시간, 분
     //private boolean started, recurring; // 시작
+    private String Number; //연동된 전화번호
+
+    public String getNumber() {
+        return Number;
+    }
+
+    public void setNumber(String number) {
+        Number = number;
+    }
+
 
     //getter & setter 가져오거나 세팅을 하기위한 단계, alt+insert로 생성
-
-//    public Alarm(int hour, int minute){
-//        this.hour = hour;
-//        this.minute = minute;
-//
-//    }
     public int getAlarmid() {
         return alarmid;
     }
@@ -43,12 +47,6 @@ public class Alarm {
     }
 
 
-//    @Override
-//    public String toString(){
-//        return "RecordData{" +
-//                "alarmid='" + alarmid + '\'' +
-//                ", hour='" + hour + '\'' +
-//                ", minute='" + minute + '\''
-//                + '}';
-//    }
+
+
 }

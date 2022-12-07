@@ -84,13 +84,16 @@ static Context context;
 
         else if(isRunning || startId==0){
             Log.d("AlarmService", "Alarm Stop");
-            ringtone.stop(); // 이것만 실행이 안되는 이유?
+          //  ringtone.stop(); // 이것만 실행이 안되는 이유?
+            //   stopSelf();
             //이 아래는 실행이 됨
             isRunning = false;
-            //휴대폰을 무음모드로 전환하여 소리 종료
+
+            //휴대폰을 무음모드로 전환하여 소리 종료, 종료시 살짝 깜박거림 있음
             AudioManager aM = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
             aM.setRingerMode(AudioManager.RINGER_MODE_SILENT);
-            stopSelf();
+
+
             Intent j = new Intent(this, Maintest_Activity.class);
             j.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(j);

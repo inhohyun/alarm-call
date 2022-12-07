@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -25,6 +26,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     private List<Alarm> items = new ArrayList<>();
     private Context mTinme;
     private AlarmDatabase db;
+
 
     public RecyclerAdapter(AlarmDatabase db) {
         this.db = db;
@@ -55,7 +57,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-
+        private TextView Num;
 
         private TextView alarm_time;
         private int index;
@@ -64,7 +66,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             super(view);
 
             alarm_time = view.findViewById(R.id.alarm_time);
-
+           Num = view.findViewById(R.id.num_text);
 
 
         }
@@ -73,13 +75,20 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         public void onBind(Alarm alarm, int position){
             index = position;
             alarm_time.setText(alarm.getHour()+":"+alarm.getMinute());
+            //연동된 번호가 있을 때 연동된 전화번호 표시
+            if (alarm.getNumber() != null){
+                //db에 저장한 번호 item에 띄우기
+                Num.setText(alarm.getNumber());
+            }
+
         }
 
-       // 데이터 편집, 보류
-        public void editData(int Hour, int Minute){
+       // 데이터 편집, 일단보류
+        public void editData(int Hour, int Minute, String Number){
             new Thread(() -> {
                 items.get(index).setHour(Hour);
                 items.get(index).setMinute(Minute);
+                items.get(index).setNumber(Number);
                 db.alarmDao().Update(items.get(index));
             }).start();
         }

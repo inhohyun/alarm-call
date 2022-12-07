@@ -12,6 +12,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -29,6 +30,11 @@ public class MainActivity extends AppCompatActivity {
     private AlarmDao mAlarmDao; // 알람 인터페이스 전역변수로 인스턴스
     private Button save;
     private TimePicker timePicker;
+
+    //연동할 전화번호
+    private EditText call;
+
+    private String mNum;
     AlarmManager alarmmanager;
     Context context;
     //  PendingIntent pendingIntent;
@@ -42,11 +48,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         this.context = this;
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
         save = (Button) findViewById(R.id.save); // 맨 마지막에 저장하는 버튼
         timePicker = (TimePicker) findViewById(R.id.time_picker); // 시간 설정
-
         alarmmanager = (AlarmManager) getSystemService(ALARM_SERVICE);
+
+        call = findViewById(R.id.text_call);
+
         // Calendar 객체 생성
         final Calendar calendar = Calendar.getInstance();
         // 알람리시버 intent 생성
@@ -58,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
                 .allowMainThreadQueries() // Main Thread에서 DBdp IO(입출력)를 가능하게 함, 쿼리를 사용 가능하도록
                 .build();
         mAlarmDao = database.alarmDao(); // 아까 만든 인터페이스를 전역변수로 받음, 인터페이스 객체 할당
+
 
         //저장버튼 클릭시
         save.setOnClickListener(new View.OnClickListener() {
@@ -79,13 +89,15 @@ public class MainActivity extends AppCompatActivity {
 
                 int hour = timePicker.getHour();
                 int minute = timePicker.getMinute();
+                //EditText에서 받아온 전화번호를 저장
+                mNum = call.getText().toString();
 
                 calendar.set(Calendar.HOUR_OF_DAY, hour);
                 calendar.set(Calendar.MINUTE, minute);
 
                 //일단 state로 값 없이 설정하는 것으로 바꿈
                 //이거 값 뭐 전달되는지 물어봤었나? -> state는 key값이고 on이 value 값임/
-                 intent.putExtra("state", "on"); // state 값이 on이면 알림 시작, off면 중지
+                intent.putExtra("state", "on"); // state 값이 on이면 알림 시작, off면 중지
 
                 //알람 리시버 호출
                 AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
@@ -106,7 +118,9 @@ public class MainActivity extends AppCompatActivity {
                 Alarm alarm = new Alarm(); // 객체 인스턴스 생성
                 alarm.setHour(hour); // 설정한 알람 시간
                 alarm.setMinute(minute); //설정한 알람 분
+                alarm.setNumber(mNum); // 설정한 번호 저장
                 mAlarmDao.Insert(alarm);
+
 
                 //    저장 클릭시 데이터베이스에 알람 내용 저장 후 메인화면으로 전환
                 Intent main_intent = new Intent(context, Maintest_Activity.class);
