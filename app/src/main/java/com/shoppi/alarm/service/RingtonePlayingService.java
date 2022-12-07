@@ -7,6 +7,7 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
@@ -29,7 +30,7 @@ public class RingtonePlayingService extends Service {
     // private Vibrator vibrator;
     MediaPlayer mediaPlayer;
     boolean isRunning;
-
+static Context context;
     int startId;
 
 //1. 알람소리 ringtone으로 교체
@@ -86,6 +87,9 @@ public class RingtonePlayingService extends Service {
             ringtone.stop(); // 이것만 실행이 안되는 이유?
             //이 아래는 실행이 됨
             isRunning = false;
+            //휴대폰을 무음모드로 전환하여 소리 종료
+            AudioManager aM = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+            aM.setRingerMode(AudioManager.RINGER_MODE_SILENT);
             stopSelf();
             Intent j = new Intent(this, Maintest_Activity.class);
             j.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

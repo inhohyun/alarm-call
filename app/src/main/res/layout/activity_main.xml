@@ -13,7 +13,11 @@
         android:layout_gravity="center"
         android:timePickerMode="spinner"
         android:id="@+id/time_picker" />
-
+    <Button
+        android:id="@+id/btn_contact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="연락처 연동하기"/>
 
     <Button
         android:id="@+id/save"

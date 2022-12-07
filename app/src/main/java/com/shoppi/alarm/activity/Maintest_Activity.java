@@ -35,9 +35,7 @@ public class Maintest_Activity extends AppCompatActivity {
     private Paint p = new Paint();
     private AlarmDatabase db;
 
-
-   Fragment1 fragment1;
-
+//   Fragment1 fragment1;
 //스위치 버튼 관련 코드, 구현예정
     //  private AlarmDao dao;
 //  //Switch switchbutton;
