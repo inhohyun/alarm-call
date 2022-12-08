@@ -1,13 +1,19 @@
 package com.shoppi.alarm.activity;
 
+import static com.shoppi.alarm.activity.RingActivity.PERMISSIONS_CALL_PHONE;
+
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.room.Room;
 
+import android.Manifest;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -55,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
         alarmmanager = (AlarmManager) getSystemService(ALARM_SERVICE);
 
         call = findViewById(R.id.text_call);
+
+
 
         // Calendar 객체 생성
         final Calendar calendar = Calendar.getInstance();
