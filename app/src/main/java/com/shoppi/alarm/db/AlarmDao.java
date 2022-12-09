@@ -11,7 +11,7 @@ import androidx.room.Update;
 
 import java.util.List;
 
-@Dao
+@Dao // dao : database access object
 public interface AlarmDao {
 
     @Insert //삽입

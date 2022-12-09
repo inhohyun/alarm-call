@@ -1,6 +1,10 @@
 package com.shoppi.alarm.activity;
 
+import static com.shoppi.alarm.activity.RingActivity.PERMISSIONS_CALL_PHONE;
+
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -12,6 +16,8 @@ import android.widget.Button;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -57,6 +63,12 @@ public class Maintest_Activity extends AppCompatActivity {
 //        이 코드를 생략하면 이후로 작성된 코드만 동작함을 의미
         super.onCreate(savedInstanceState);
         setContentView(R.layout.alam_main);
+
+        //전화권한이 없다면 권한 받기
+        if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, PERMISSIONS_CALL_PHONE);
+        }
+
 
         //  fragment1 = new Fragment1();
 

@@ -1,13 +1,21 @@
 package com.shoppi.alarm.activity;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.shoppi.alarm.manage.AlarmReceiver;
 import com.shoppi.alarm.service.RingtonePlayingService;
@@ -16,12 +24,27 @@ import com.shoppi.roomdatabase_sample.R;
 public class RingActivity extends AppCompatActivity {
     Button clear;
 
+    private static final int TOTAL = 11 * 1000;
+    private static final int COUNT_DOWN_INTERVAL = 1000;
+
+    static final int PERMISSIONS_CALL_PHONE = 1;
+
+    private  int count = 10;
+    private TextView countTxt;
+    private CountDownTimer countDownTimer;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.running);
 
+
+
         clear = findViewById(R.id.btn_stop);
+        countTxt = findViewById(R.id.count_txt);
+        countDownTimer();
+        countDownTimer.start();
+
+
         //종료 버튼 클릭시 service에서 알람 종료
         clear.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,6 +77,44 @@ public class RingActivity extends AppCompatActivity {
             }
         });
     }
+    public void countDownTimer(){
+        countDownTimer = new CountDownTimer(TOTAL, COUNT_DOWN_INTERVAL) {
 
+            @Override
+            public void onTick(long l) {
+                countTxt.setText(String.valueOf(count));
+                count--;
+            }
+
+            //해당 메소드에 전화연결부분 구현
+            @Override
+            public void onFinish() {
+                countTxt.setText("알람 종료");
+                //카운트 종료시 해당 번호로 전화
+                String tel = "tel:" + "01040802284";
+                //카운트 종료시 알람종료
+                Intent call_Intent = new Intent(RingActivity.this, RingtonePlayingService.class);
+                stopService(call_Intent);
+                    Intent callIntent = new Intent(Intent.ACTION_CALL);
+                    callIntent.setData(Uri.parse(tel));
+                    startActivity(callIntent);
+
+
+
+            }
+        };
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        try {
+            countDownTimer.cancel();
+        }catch (Exception e){
+
+        }
+        countDownTimer = null;
+    }
 
 }
+
