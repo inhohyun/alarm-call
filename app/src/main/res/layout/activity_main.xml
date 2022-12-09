@@ -9,10 +9,11 @@
     tools:context="com.shoppi.alarm.activity.MainActivity">
 
     <TextView
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="50dp"
         android:textColor="#4f5ea2"
         android:textSize="36sp"
         android:textStyle="bold"
@@ -26,6 +27,7 @@
         android:id="@+id/time_picker" />
    <EditText
        android:id="@+id/text_call"
+       android:layout_marginTop="50dp"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:hint="연동할 전화번호를 작성해주세요."/>
