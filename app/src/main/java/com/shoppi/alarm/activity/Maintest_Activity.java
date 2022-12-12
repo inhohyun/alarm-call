@@ -93,7 +93,12 @@ Context context;
         set_button=   (Button)findViewById(R.id.alam_plus_btn);
         recyclerView = (RecyclerView) findViewById(R.id.rv_view);
         weather = findViewById(R.id.btn_weather);
-        
+
+        TimerView = findViewById(R.id.fastest_alam_text);
+       MainTimerTask timerTask = new MainTimerTask();
+        mTimer = new Timer();
+        mTimer.schedule(timerTask, 500, 1000);
+
         //날씨정보 버튼 클릭시
         weather.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -142,6 +147,46 @@ Context context;
         });
 
     }
+
+    private Handler mHandler = new Handler();
+
+    private Runnable mUpdateTimeTask = new Runnable() {
+        public void run() {
+
+            Date rightNow = new Date();
+            SimpleDateFormat formatter = new SimpleDateFormat(
+                    "hh:mm:ss ");
+            String dateString = formatter.format(rightNow);
+            TimerView.setText(dateString);
+
+        }
+    };
+
+
+    class MainTimerTask extends TimerTask {
+        public void run() {
+            mHandler.post(mUpdateTimeTask);
+        }
+    }
+    @Override
+    protected void onDestroy() {
+        mTimer.cancel();
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onPause() {
+        mTimer.cancel();
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        MainTimerTask timerTask = new MainTimerTask();
+        mTimer.schedule(timerTask, 500, 3000);
+        super.onResume();
+    }
+
 
 //    //설정화면 호출 메소드(transection), fragment로 교체시 사용될듯
 //    private void FragmentView(int Fragment) {
