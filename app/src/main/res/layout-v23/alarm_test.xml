@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/ellipse_1"
+    android:orientation="vertical"
+
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="390dp"
+        android:orientation="vertical"
+        >
+
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/time"
+        android:text="시간"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="#4f5ea2"
+        android:layout_gravity="center_horizontal"
+        />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:textColor="#4f5ea2"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            android:text="Alarm" />
+
+    <android.widget.Button
+        android:id="@+id/myImageView"
+        android:layout_width="256dp"
+        android:layout_height="245dp"
+        android:layout_marginLeft="75dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/line"
+        android:layerType="software"
+        android:text="00:00"
+        android:textColor="#4f5ea2"
+        android:textSize="50dp"
+        android:textStyle="bold">
+
+
+    </android.widget.Button>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:textStyle="bold"
+            android:textSize="38dp"
+            android:textColor="#4f5ea2"
+            android:layout_marginLeft="50dp"
+            android:gravity="center_horizontal"
+            android:text="S"/>
+
+        <TextView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:textStyle="bold"
+            android:textSize="38dp"
+            android:textColor="#4f5ea2"
+            android:gravity="center_horizontal"
+            android:text="M"/>
+
+        <TextView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:textStyle="bold"
+            android:textSize="38dp"
+            android:textColor="#4f5ea2"
+            android:gravity="center_horizontal"
+            android:text="T"/>
+
+        <TextView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:textStyle="bold"
+            android:textSize="38dp"
+            android:textColor="#4f5ea2"
+            android:gravity="center_horizontal"
+            android:text="W"/>
+
+        <TextView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:textStyle="bold"
+            android:textSize="38dp"
+            android:textColor="#4f5ea2"
+            android:gravity="center_horizontal"
+            android:text="F"/>
+
+        <TextView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:textStyle="bold"
+            android:textSize="38dp"
+            android:textColor="#4f5ea2"
+            android:gravity="center_horizontal"
+            android:text="S"/>
+
+
+    </LinearLayout>
+
+
+
+    <android.widget.Button
+        android:id="@+id/btn_stop"
+        android:layout_width="125dp"
+        android:layout_height="63dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/test"
+        android:text="클릭"
+        android:textColor="#4f5ea2"
+        android:textSize="33sp"
+        android:textStyle="bold"
+        />
+
+</LinearLayout>
