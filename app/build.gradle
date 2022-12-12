@@ -1,49 +1,41 @@
-plugins {
-    id 'com.android.application'
-}
+apply plugin: 'com.android.application'
 
 android {
-    namespace 'com.shoppi.roomdatabase_sample'
-    compileSdk 32
-
+    compileSdkVersion 28
     defaultConfig {
-        applicationId "com.shoppi.alarm"
-        minSdk 21
-        targetSdk 32
+        applicationId 'com.shoppi.alarm'
+        //Priority levels: 999 is max, 0 is default, -999 is min
+        manifestPlaceholders = [bootPriority:"999"]
+        minSdkVersion 16
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
     }
-
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-}
-android {
-
     compileOptions {
         sourceCompatibility = 1.8
         targetCompatibility = 1.8
     }
-
+    namespace 'com.github.ppartisan.simplealarms'
 }
+
 dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
 
-    implementation 'androidx.appcompat:appcompat:1.5.1'
-    implementation 'com.google.android.material:material:1.7.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'androidx.room:room-runtime:2.4.3' //androidx의 room 라이브러리를 추가, main에서 room->add dependency로 추가
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.4'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
-    annotationProcessor 'androidx.room:room-compiler:2.4.3'
-
+    def support = "28.0.0"
+    implementation "com.android.support:appcompat-v7:$support"
+    implementation "com.android.support:recyclerview-v7:$support"
+    implementation "com.android.support:design:$support"
+    implementation "com.android.support:gridlayout-v7:$support"
+    testImplementation 'junit:junit:4.12'
 }

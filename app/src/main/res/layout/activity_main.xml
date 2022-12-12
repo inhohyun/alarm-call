@@ -1,105 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<fragment
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_fragment"
+    android:name="com.github.ppartisan.simplealarms.ui.MainFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.shoppi.alarm.activity.MainActivity">
-
-    <TimePicker
-        android:id="@+id/time_picker"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:theme="@style/CustomTimePicker"
-        android:timePickerMode="spinner" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/alarm_Day"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="내일 11월 29일 (화)"
-            />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <Button
-                android:id="@+id/monDay"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:text="월"
-                android:layout_weight="1"
-                style="?android:attr/buttonBarButtonStyle" />
-            <Button
-                android:id="@+id/tuesDay"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:text="화"
-                android:layout_weight="1"
-                style="?android:attr/buttonBarButtonStyle" />
-            <Button
-                android:id="@+id/wednesDay"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:text="수"
-                android:layout_weight="1"
-                style="?android:attr/buttonBarButtonStyle" />
-            <Button
-                android:id="@+id/thursDay"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:text="목"
-                android:layout_weight="1"
-                style="?android:attr/buttonBarButtonStyle" />
-            <Button
-                android:id="@+id/friDay"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:text="금"
-                android:layout_weight="1"
-                style="?android:attr/buttonBarButtonStyle" />
-            <Button
-                android:id="@+id/saturDay"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:text="토"
-                android:layout_weight="1"
-                style="?android:attr/buttonBarButtonStyle" />
-            <Button
-                android:id="@+id/sunDay"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:text="일"
-                android:layout_weight="1"
-                style="?android:attr/buttonBarButtonStyle" />
-        </LinearLayout>
-
-    </LinearLayout>
-
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAlignment="center">
-        <Button
-            android:id="@+id/save"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="저장" />
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
-
-</LinearLayout>
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.github.ppartisan.simplealarms.ui.MainActivity" />
