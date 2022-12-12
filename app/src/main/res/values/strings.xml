@@ -1,8 +1,43 @@
 <resources>
     <string name="app_name">alarm</string>
-    <string name="bundle_alarm_obj">tap!</string>
-    <string name="arg_alarm_obj">tap_count</string>
-    <string name="alam_fastest">00시간 00분 후에 알람이 울립니다</string>
-    <string name="alam_fastest_alam">00월 00일 (월) 오전 00:00</string>
-    <string name="alam_time_text">오전 00:00</string>
+
+    <!-- 메인 화면 -->
+    <string name="empty_view_text">알람이 없습니다</string>
+
+    <!-- 화면 언어 갱신 -->
+    <string name="time">시간</string>
+    <string name="label">제목</string>
+    <string name="days">요일</string>
+    <string name="edit_alarm">알람 설정</string>
+    <string name="add_alarm">알람 추가</string>
+    <string name="add_label_hint">라벨을 추가해 주세요</string>
+    <string name="update_complete">변경 완료</string>
+    <string name="update_failed">업데이트 실패</string>
+    <string name="delete_complete">알림</string>
+    <string name="delete_failed">삭제 실패</string>
+    <string name="delete_dialog_title">알람 삭제 완료</string>
+    <string name="delete_dialog_content">정말로 알람을 삭제하시겠습니까?</string>
+    <string name="yes">네</string>
+    <string name="no">아니요</string>
+
+    <!-- Edit Alarm Menu -->
+    <string name="action_save">저장</string>
+    <string name="action_delete">삭제</string>
+
+<!--    알람 앱으로 이동할지 결정-->
+    <string name="launch_main_activity">앱으로 이동</string>
+    <string name="dismiss">종료</string>
+
+    <!-- 요일 -->
+    <string name="monday">월요일</string>
+    <string name="tuesday">화요일</string>
+    <string name="wednesday">수요일</string>
+    <string name="thursday">목요일</string>
+    <string name="friday">금요일</string>
+    <string name="saturday">토요일</string>
+    <string name="sunday">일요일</string>
+
+    <!-- 알림 -->
+    <string name="channel_name">나좀 깨워줘요</string>
+
 </resources>
