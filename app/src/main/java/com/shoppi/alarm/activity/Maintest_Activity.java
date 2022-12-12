@@ -155,7 +155,7 @@ Context context;
 
             Date rightNow = new Date();
             SimpleDateFormat formatter = new SimpleDateFormat(
-                    "hh:mm:ss ");
+                    "hh:mm ");
             String dateString = formatter.format(rightNow);
             TimerView.setText(dateString);
 

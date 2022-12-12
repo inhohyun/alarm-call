@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="20dp"
         android:textColor="#4f5ea2"
         android:textSize="36sp"
         android:textStyle="bold"
@@ -22,13 +22,13 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="550dp">
+            android:layout_height="500dp">
 
             <TextView
                 android:id="@+id/fastest_alam_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:text="현재 시간"
                 android:textColor="#4f5ea2"
