@@ -17,6 +17,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.shoppi.alarm.db.Alarm;
+import com.shoppi.alarm.db.AlarmDatabase;
+import com.shoppi.alarm.list.RecyclerAdapter;
 import com.shoppi.alarm.manage.AlarmReceiver;
 import com.shoppi.alarm.service.RingtonePlayingService;
 import com.shoppi.roomdatabase_sample.R;
@@ -24,6 +27,8 @@ import com.shoppi.roomdatabase_sample.R;
 public class RingActivity extends AppCompatActivity {
     Button clear;
 
+    private AlarmDatabase db;
+    private Intent intent;
     private static final int TOTAL = 11 * 1000;
     private static final int COUNT_DOWN_INTERVAL = 1000;
 
@@ -90,14 +95,20 @@ public class RingActivity extends AppCompatActivity {
             @Override
             public void onFinish() {
                 countTxt.setText("알람 종료");
-                //카운트 종료시 해당 번호로 전화
-                String tel = "tel:" + "01040802284";
+                //카운트 종료시 해당 번호로 전화, db 텍스트 가져오기()
+                //찾고자하는 position을 어떻게 잡지?
+
+
+                //인텐트로 전화번호를 받기....(미구현)
+//                intent = getIntent();
+//                String Num = intent.getExtras().getString("");
+                String tel = "tel:" + "01029954545";
                 //카운트 종료시 알람종료
                 Intent call_Intent = new Intent(RingActivity.this, RingtonePlayingService.class);
                 stopService(call_Intent);
-                    Intent callIntent = new Intent(Intent.ACTION_CALL);
-                    callIntent.setData(Uri.parse(tel));
-                    startActivity(callIntent);
+                Intent callIntent = new Intent(Intent.ACTION_CALL);
+                callIntent.setData(Uri.parse(tel));
+                startActivity(callIntent);
 
 
 

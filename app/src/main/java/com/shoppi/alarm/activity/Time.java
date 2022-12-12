@@ -23,9 +23,9 @@ public class Time extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.alarm_test);
+        setContentView(R.layout.alam_main);
 
-        TimerView = findViewById(R.id.time);
+        TimerView = findViewById(R.id.fastest_alam_text);
 
         MainTimerTask timerTask = new MainTimerTask();
         mTimer = new Timer();

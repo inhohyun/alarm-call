@@ -192,6 +192,7 @@ static Context context;
         //휴대폰을 무음모드로 전환하여 소리 종료, 종료시 살짝 깜박거림 있음
         AudioManager aM = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
         aM.setRingerMode(AudioManager.RINGER_MODE_SILENT);
+
         super.onDestroy();
     }
 

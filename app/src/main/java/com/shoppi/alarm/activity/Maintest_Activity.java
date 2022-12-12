@@ -3,6 +3,7 @@ package com.shoppi.alarm.activity;
 import static com.shoppi.alarm.activity.RingActivity.PERMISSIONS_CALL_PHONE;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -25,6 +26,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.shoppi.alarm.Fragment1;
 import com.shoppi.alarm.Moon.WheaterActivity;
+import com.shoppi.alarm.Moon.weather2;
 import com.shoppi.alarm.db.Alarm;
 import com.shoppi.alarm.db.AlarmDatabase;
 import com.shoppi.alarm.list.RecyclerAdapter;
@@ -40,7 +42,8 @@ public class Maintest_Activity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private Paint p = new Paint();
     private AlarmDatabase db;
-
+    private Button weather;
+Context context;
 //   Fragment1 fragment1;
 //스위치 버튼 관련 코드, 구현예정
     //  private AlarmDao dao;
@@ -72,14 +75,25 @@ public class Maintest_Activity extends AppCompatActivity {
 
         //  fragment1 = new Fragment1();
 
-//        WheaterActivity.InitContext(this);
-//        WheaterActivity w = new WheaterActivity();
-//        w.Start();
+        WheaterActivity.InitContext(this);
+        WheaterActivity w = new WheaterActivity();
+        w.Start();
 
         set_button=   (Button)findViewById(R.id.alam_plus_btn);
         recyclerView = (RecyclerView) findViewById(R.id.rv_view);
-
-
+        weather = findViewById(R.id.btn_weather);
+        
+        //날씨정보 버튼 클릭시
+        weather.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //클릭시 날씨정보 엑티비티로 화면전환
+                Intent weather_intent = new Intent(getApplicationContext(), weather2.class);
+                startActivity(weather_intent);
+            }
+        });
+        
+        //스와이프 삭제 활성화
         initSwipe();
 
         //플러스 버튼 클릭시
@@ -103,7 +117,7 @@ public class Maintest_Activity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        adapter = new RecyclerAdapter(db);
+        adapter = new RecyclerAdapter(db, context);
         recyclerView.setAdapter(adapter);
 
         initSwipe();

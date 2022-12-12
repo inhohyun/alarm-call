@@ -35,6 +35,7 @@
         <activity android:name="com.shoppi.alarm.activity.MainActivity"> </activity>
         <activity android:name="com.shoppi.alarm.activity.RingActivity"></activity>
         <activity android:name="com.shoppi.alarm.activity.Time"></activity>
+        <activity android:name="com.shoppi.alarm.Moon.weather2"></activity>
 
         <receiver android:name="com.shoppi.alarm.manage.AlarmReceiver"
             android:enabled="true"

@@ -1,6 +1,7 @@
 package com.shoppi.alarm.list;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.shoppi.alarm.activity.RingActivity;
 import com.shoppi.alarm.db.Alarm;
 import com.shoppi.alarm.db.AlarmDatabase;
 import com.shoppi.roomdatabase_sample.R;
@@ -18,18 +20,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
-/*
-  onBind()를 이용해 ViewHolder에 item을 bind해주고, 현재 position도 따로 저장
-  -> editData()메서드로 데이터 수정하기 위함
-  Thread를 통해 db에 접근해야하고, dao를 통해 db에 접근해 data update를 함
-*/
+
+    /*
+      onBind()를 이용해 ViewHolder에 item을 bind해주고, 현재 position도 따로 저장
+      -> editData()메서드로 데이터 수정하기 위함
+      Thread를 통해 db에 접근해야하고, dao를 통해 db에 접근해 data update를 함
+    */
     private List<Alarm> items = new ArrayList<>();
     private Context mTinme;
     private AlarmDatabase db;
+    private Context context;
 
-
-    public RecyclerAdapter(AlarmDatabase db) {
+    public RecyclerAdapter(AlarmDatabase db, Context context) {
         this.db = db;
+        this.context = context;
     }
 
     @Override
@@ -48,8 +52,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     }
     @Override
     public void onBindViewHolder(RecyclerAdapter.ViewHolder viewHolder, int position) {
+        viewHolder.onBind(items.get(position),position); // viewHolder로 받은 position에 item배치
 
-        viewHolder.onBind(items.get(position),position);
 
     }
 
@@ -61,7 +65,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
         private TextView alarm_time;
         private int index;
-
+        public String mcall_Num;
         public ViewHolder(View view) {
             super(view);
 
@@ -78,7 +82,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             //연동된 번호가 있을 때 연동된 전화번호 표시
             if (alarm.getNumber() != null){
                 //db에 저장한 번호 item에 띄우기
-                Num.setText(alarm.getNumber());
+                mcall_Num = alarm.getNumber();
+                Num.setText(mcall_Num);
             }
 
         }
@@ -90,6 +95,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
                 items.get(index).setMinute(Minute);
                 items.get(index).setNumber(Number);
                 db.alarmDao().Update(items.get(index));
+
             }).start();
         }
 

@@ -30,7 +30,7 @@ public class RequestHttpConnection {
             String key;
             String value;
 
-            for(Map.Entry<String, Object> parameter : _params.valueSet()){
+                for(Map.Entry<String, Object> parameter : _params.valueSet()){
                 key = parameter.getKey();
                 value = parameter.getValue().toString();
 

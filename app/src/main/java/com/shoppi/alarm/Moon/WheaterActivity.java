@@ -29,16 +29,16 @@ public class WheaterActivity{
         tv_outPut = ((TextView)((Activity)mMain).findViewById(R.id.fastest_alam_text));
 
         //URL 설정
-        String service_key = "G9hZ6q2%2FYd%2BvQ5Ph8JRnm%2BFXoiPrQCX7JTvWuOl4FaefBstAwyKXWTkeoFppnEfYFQNnVrMql%2BIx5YL3ikzBJw%3D%3D";
+        String service_key = "T%2F5A5PGTWGyFuPpvVBjhohVeH5fUbfrfJcFQF%2BMO1cxY%2FsfWii%2FHvDgMODMKnQPK8hgRNlwTSgwXWeYAYzSkfw%3D%3D";
         String num_of_rows = "10";
         String page_no = "1";
         String date_type = "JSON";
-        String base_date = "20221109";
-        String base_time = "0600";
+        String base_date = "20210628";
+        String base_time = "0630";
         String nx = "55";
         String ny = "127";
 
-        String url = "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst"+
+        final String url = "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0"+
                 "serviceKey="+service_key+
                 "&numOfRows="+num_of_rows+
                 "&pageNo="+page_no+
@@ -65,18 +65,20 @@ public class WheaterActivity{
         @Override
         protected String doInBackground(Void... params){
             String result;
+            //result안에 어떤 값이 담겨야 할까?
             RequestHttpConnection requestHttpConnection = new RequestHttpConnection();
             result = requestHttpConnection.request(url, values);
 
+            //여기서 반환된 값이 onPostExecute로 전달
             return result;
         }
 
         @Override
-        protected void onPostExecute(String s){
-            super.onPostExecute(s);
+        protected void onPostExecute(String result){
+            super.onPostExecute(result);
 
-            tv_outPut.setText(s);
-            Log.d("onPostEx", "출력 값: "+s);
+            tv_outPut.setText( result);
+            Log.d("onPostEx", "출력 값: "+result);
         }
     }
 }
