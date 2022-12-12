@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/ellipse_1"
+    tools:context="com.shoppi.alarm.activity.Time"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:textColor="#4f5ea2"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        android:text="Alarm" />
+
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="500dp">
+
+            <TextView
+                android:id="@+id/fastest_alam_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="현재 시간"
+                android:textColor="#4f5ea2"
+                android:textSize="40sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+<!--            클릭시 날씨정보로 인텐트하는 버튼-->
+            <android.widget.Button
+                android:id="@+id/btn_weather"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#00000000"
+                android:text="날씨정보 보러가기"
+                android:textSize="17dp"
+                android:textStyle="bold"
+                android:textColor="#4f5ea2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fastest_alam_text" />
+
+
+            <ScrollView
+                android:id="@+id/scrollView2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="288dp"
+                android:layout_weight="10"
+                android:fillViewport="false"
+                app:layout_constraintTop_toBottomOf="@+id/fastest_alam_text"
+                tools:layout_editor_absoluteX="31dp">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </ScrollView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+
+
+
+        <android.widget.Button
+            android:id="@+id/alam_plus_btn"
+            android:layout_width="53dp"
+            android:layout_height="50dp"
+            android:background="@drawable/button_circle"
+            android:contentDescription="@string/app_name"
+            android:text="+"
+            android:textColor="#fbeaeb"
+            android:textSize="33sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintVertical_bias="0.4" />
+    </LinearLayout>
+
+
+
+
+
+</LinearLayout>

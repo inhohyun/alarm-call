@@ -1,41 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="android.permission.INTERNET" />
 
-    <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+<!--    전화연동을 위한 권한-->
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.DIAL_PHONE" />
 
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/icon"
         android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-
-        <activity android:name=".ui.MainActivity">
+        android:theme="@style/Theme.Alarm"
+        android:usesCleartextTraffic="true">
+<!--        usesCleartextTraffic : 통신을 위해 인터넷 권한을 추가해준다.-->
+        <activity
+            android:name="com.shoppi.alarm.activity.Maintest_Activity"
+            android:exported="true">
             <intent-filter>
+
+<!--                android.intent.action.MAIN = 어플이 시작할때 활동 시작-->
                 <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
+
+<!--                카테고리.LAUNCHER = 액티비티가 어플리케이션에 표시
+                    액션 하나당 최소 한개의 카테고리가 있어야 한다.-->
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.AddEditAlarmActivity" />
+        <activity android:name="com.shoppi.alarm.activity.MainActivity"> </activity>
+        <activity android:name="com.shoppi.alarm.activity.RingActivity"></activity>
+        <activity android:name="com.shoppi.alarm.activity.Time"></activity>
+        <activity android:name="com.shoppi.alarm.Moon.weather2"></activity>
 
-        <activity
-            android:name=".ui.AlarmLandingPageActivity"
-            android:theme="@style/AlertLandingPageTheme" />
+        <receiver android:name="com.shoppi.alarm.manage.AlarmReceiver"
+            android:enabled="true"
+            android:exported="true">
 
-        <service android:name=".service.LoadAlarmsService" />
-
-        <receiver android:name=".service.LoadAlarmsReceiver" />
-
-        <receiver android:name=".service.AlarmReceiver" />
-
-        <receiver android:name=".service.BootReceiver" android:enabled="true" android:exported="true">
-            <intent-filter android:priority="${bootPriority}">
-                <action android:name="android.intent.action.BOOT_COMPLETED"/>
-            </intent-filter>
+<!--            android:exported="true"-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MEDIA_SCANNER_STARTED" />-->
+<!--            </intent-filter>-->
         </receiver>
+        <service android:name="com.shoppi.alarm.service.RingtonePlayingService"
+            android:enabled="true"
+            android:exported="true">
+        </service>
 
     </application>
-
 </manifest>
