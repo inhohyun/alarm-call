@@ -39,11 +39,15 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
 <!--            클릭시 날씨정보로 인텐트하는 버튼-->
-            <Button
+            <android.widget.Button
                 android:id="@+id/btn_weather"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="#00000000"
                 android:text="날씨정보 보러가기"
+                android:textSize="17dp"
+                android:textStyle="bold"
+                android:textColor="#4f5ea2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/fastest_alam_text" />

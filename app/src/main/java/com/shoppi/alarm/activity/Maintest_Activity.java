@@ -34,6 +34,14 @@ import com.shoppi.roomdatabase_sample.R;
 
 import java.util.List;
 
+
+import android.os.Handler;
+import android.widget.TextView;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
+
 //메인화면, 화면에 위젯들 띄우는 역할
 public class Maintest_Activity extends AppCompatActivity {
     private Button set_button;
@@ -43,6 +51,9 @@ public class Maintest_Activity extends AppCompatActivity {
     private Paint p = new Paint();
     private AlarmDatabase db;
     private Button weather;
+
+    private TextView TimerView;
+    private Timer mTimer;
 Context context;
 //   Fragment1 fragment1;
 //스위치 버튼 관련 코드, 구현예정

@@ -30,7 +30,8 @@
        android:layout_marginTop="50dp"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
-       android:hint="연동할 전화번호를 작성해주세요."/>
+       android:hint="연동할 전화번호를 작성해주세요."
+       android:textColor="#4f5ea2"/>
 
 
     <Button
