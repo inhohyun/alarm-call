@@ -1,4 +1,4 @@
-<img src="https://capsule-render.vercel.app/api?type=wave&color=auto&height=300&section=header&text=최소%20A+만%20주세요&fontSize=90" />
+
 
 # 앱 이름 : 알람-나 좀 깨워주세요
 
