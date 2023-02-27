@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@drawable/ellipse_1"
+    android:orientation="vertical"
     tools:context="com.shoppi.alarm.activity.MainActivity">
 
     <TextView
@@ -14,31 +13,31 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="50dp"
+        android:text="알람 설정"
         android:textColor="#4f5ea2"
         android:textSize="36sp"
-        android:textStyle="bold"
-        android:text="알람 설정" />
+        android:textStyle="bold" />
 
     <TimePicker
+        android:id="@+id/time_picker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:timePickerMode="spinner"
-        android:id="@+id/time_picker" />
-   <EditText
-       android:id="@+id/text_call"
-       android:layout_marginTop="50dp"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:hint="연동할 전화번호를 작성해주세요."
-       android:textColor="#4f5ea2"/>
+        android:timePickerMode="spinner" />
+
+    <EditText
+        android:id="@+id/text_call"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:hint="연동할 전화번호를 작성해주세요."
+        android:textColor="#4f5ea2" />
 
 
     <Button
         android:id="@+id/save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="저장"
-        />
+        android:text="저장" />
 
 </LinearLayout>

@@ -18,7 +18,7 @@
         android:usesCleartextTraffic="true">
 <!--        usesCleartextTraffic : 통신을 위해 인터넷 권한을 추가해준다.-->
         <activity
-            android:name="com.shoppi.alarm.activity.Maintest_Activity"
+            android:name="com.shoppi.alarm.activity.SettingActivity"
             android:exported="true">
             <intent-filter>
 

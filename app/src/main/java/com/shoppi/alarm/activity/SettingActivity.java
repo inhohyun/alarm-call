@@ -24,7 +24,6 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.shoppi.alarm.Fragment1;
 import com.shoppi.alarm.Moon.WheaterActivity;
 import com.shoppi.alarm.Moon.weather2;
 import com.shoppi.alarm.db.Alarm;
@@ -32,18 +31,20 @@ import com.shoppi.alarm.db.AlarmDatabase;
 import com.shoppi.alarm.list.RecyclerAdapter;
 import com.shoppi.roomdatabase_sample.R;
 
+
 import java.util.List;
 
 
 import android.os.Handler;
 import android.widget.TextView;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
 //메인화면, 화면에 위젯들 띄우는 역할
-public class Maintest_Activity extends AppCompatActivity {
+public class SettingActivity extends AppCompatActivity {
     private Button set_button;
 
     private RecyclerAdapter adapter;
@@ -54,23 +55,7 @@ public class Maintest_Activity extends AppCompatActivity {
 
     private TextView TimerView;
     private Timer mTimer;
-Context context;
-//   Fragment1 fragment1;
-//스위치 버튼 관련 코드, 구현예정
-    //  private AlarmDao dao;
-//  //Switch switchbutton;
-//    class visibilitySwitchListener implements CompoundButton.OnCheckedChangeListener{
-//        @Override
-//        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//            if(isChecked){
-//                Toast.makeText(Maintest_Activity.this, "알람 활설화.", Toast.LENGTH_LONG).show();
-//            }
-//            else{
-//                Toast.makeText(Maintest_Activity.this,"알람 비활성화", Toast.LENGTH_SHORT).show();            }
-//
-//        }
-//    }
-
+    Context context;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 //        기존 코드, 상속받은 AppCompatActivity이외의 코드도 동작함을 의미
@@ -84,18 +69,14 @@ Context context;
         }
 
 
-        //  fragment1 = new Fragment1();
-
         WheaterActivity.InitContext(this);
         WheaterActivity w = new WheaterActivity();
         w.Start();
 
-        set_button=   (Button)findViewById(R.id.alam_plus_btn);
+        set_button = (Button) findViewById(R.id.alam_plus_btn);
         recyclerView = (RecyclerView) findViewById(R.id.rv_view);
         weather = findViewById(R.id.btn_weather);
-
-        TimerView = findViewById(R.id.fastest_alam_text);
-       MainTimerTask timerTask = new MainTimerTask();
+        MainTimerTask timerTask = new MainTimerTask();
         mTimer = new Timer();
         mTimer.schedule(timerTask, 500, 1000);
 
@@ -108,8 +89,6 @@ Context context;
                 startActivity(weather_intent);
             }
         });
-        
-        //스와이프 삭제 활성화
         initSwipe();
 
         //플러스 버튼 클릭시
@@ -121,11 +100,6 @@ Context context;
                 //설정화면 호출(activity)
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
-
-                //설정화면 호출(fragment)
-//                FragmentView(Fragment1);
-            //    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment1).commit();
-
             }
         });
 
@@ -168,6 +142,7 @@ Context context;
             mHandler.post(mUpdateTimeTask);
         }
     }
+
     @Override
     protected void onDestroy() {
         mTimer.cancel();
@@ -188,87 +163,70 @@ Context context;
     }
 
 
-//    //설정화면 호출 메소드(transection), fragment로 교체시 사용될듯
-//    private void FragmentView(int Fragment) {
-//        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-//
-//        Fragment1 fragment = new Fragment1();
-//        transaction.replace(R.id.fragment_container, fragment);
-//        transaction.commit();
-//
-//    }
-
-
     //스와이프로 삭제
     private void initSwipe() {
-            ItemTouchHelper.SimpleCallback simpleItemTouchCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT /* | ItemTouchHelper.RIGHT */)
-
-            {
+        ItemTouchHelper.SimpleCallback simpleItemTouchCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT /* | ItemTouchHelper.RIGHT */) {
 
 
-                @Override
-                public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
-                    return false;
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+                int position = viewHolder.getAdapterPosition();
+                //왼쪽으로 밀었을 때
+                if (direction == ItemTouchHelper.LEFT) {
+
+                    //dao를 통해 item을 delete
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            db.alarmDao().Delete(adapter.getItems().get(position));
+                        }
+
+                    }).start();
+
+                } else {
+                    //오른쪽으로 밀었을때, 알람 전화연결관련기능 만들까 생각중
                 }
+            }
 
+            @Override
+            public void onChildDraw(Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
 
-                @Override
-                public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
-                    int position = viewHolder.getAdapterPosition();
-                    //왼쪽으로 밀었을 때
-                    if (direction == ItemTouchHelper.LEFT) {
+                Bitmap icon;
+                if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
 
-                        //dao를 통해 item을 delete
-                        new Thread(new Runnable() {
-                            @Override
-                            public void run() {
-                                db.alarmDao().Delete(adapter.getItems().get(position));
-                            }
+                    View itemView = viewHolder.itemView;
+                    float height = (float) itemView.getBottom() - (float) itemView.getTop();
+                    float width = height / 3;
 
-                        }).start();
+                    if (dX > 0) {
+                        //오른쪽으로 밀었을 때의 기능 사용할꺼면 여기에 구현
 
                     } else {
-                        //오른쪽으로 밀었을때, 알람 전화연결관련기능 만들까 생각중
+                        p.setColor(Color.parseColor("#D32F2F"));
+                        RectF background = new RectF((float) itemView.getRight() + dX, (float) itemView.getTop(), (float) itemView.getRight(), (float) itemView.getBottom());
+                        c.drawRect(background, p);
+                        /*
+                         * icon 추가할 수 있음.
+                         */
+                        //icon = BitmapFactory.decodeResource(getResources(), R.drawable.icon_png); //vector 불가!
+                        // RectF icon_dest = new RectF((float) itemView.getRight() - 2 * width, (float) itemView.getTop() + width, (float) itemView.getRight() - width, (float) itemView.getBottom() - width);
+                        //c.drawBitmap(icon, null, icon_dest, p);
                     }
                 }
-
-                @Override
-                public void onChildDraw(Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
-
-                    Bitmap icon;
-                    if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
-
-                        View itemView = viewHolder.itemView;
-                        float height = (float) itemView.getBottom() - (float) itemView.getTop();
-                        float width = height / 3;
-
-                        if (dX > 0) {
-                            //오른쪽으로 밀었을 때의 기능 사용할꺼면 여기에 구현
-
-                        } else {
-                            p.setColor(Color.parseColor("#D32F2F"));
-                            RectF background = new RectF((float) itemView.getRight() + dX, (float) itemView.getTop(), (float) itemView.getRight(), (float) itemView.getBottom());
-                            c.drawRect(background, p);
-                            /*
-                             * icon 추가할 수 있음.
-                             */
-                            //icon = BitmapFactory.decodeResource(getResources(), R.drawable.icon_png); //vector 불가!
-                            // RectF icon_dest = new RectF((float) itemView.getRight() - 2 * width, (float) itemView.getTop() + width, (float) itemView.getRight() - width, (float) itemView.getBottom() - width);
-                            //c.drawBitmap(icon, null, icon_dest, p);
-                        }
-                    }
-                    super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
-                }
-            };
-            ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleItemTouchCallback);
-            itemTouchHelper.attachToRecyclerView(recyclerView);
+                super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+            }
+        };
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleItemTouchCallback);
+        itemTouchHelper.attachToRecyclerView(recyclerView);
 
 
-
-
-
-        }
-
+    }
 
 
 }

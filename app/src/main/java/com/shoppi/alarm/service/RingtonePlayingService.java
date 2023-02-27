@@ -1,9 +1,5 @@
 package com.shoppi.alarm.service;
 
-import android.app.Notification;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -12,19 +8,13 @@ import android.media.MediaPlayer;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
-import android.os.Build;
 import android.os.IBinder;
-import android.os.Vibrator;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
-import androidx.core.app.NotificationCompat;
 
-import com.shoppi.alarm.activity.Maintest_Activity;
+import com.shoppi.alarm.activity.SettingActivity;
 import com.shoppi.alarm.activity.RingActivity;
-import com.shoppi.roomdatabase_sample.R;
 
 public class RingtonePlayingService extends Service {
     // private Vibrator vibrator;
@@ -94,7 +84,7 @@ static Context context;
             aM.setRingerMode(AudioManager.RINGER_MODE_SILENT);
 
 
-            Intent j = new Intent(this, Maintest_Activity.class);
+            Intent j = new Intent(this, SettingActivity.class);
             j.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(j);
         }

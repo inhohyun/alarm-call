@@ -1,19 +1,13 @@
 package com.shoppi.alarm.activity;
 
-import static com.shoppi.alarm.activity.RingActivity.PERMISSIONS_CALL_PHONE;
-
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.room.Room;
 
-import android.Manifest;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -22,7 +16,6 @@ import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.shoppi.alarm.activity.Maintest_Activity;
 import com.shoppi.alarm.db.Alarm;
 import com.shoppi.alarm.db.AlarmDao;
 import com.shoppi.alarm.db.AlarmDatabase;
@@ -131,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                 //    저장 클릭시 데이터베이스에 알람 내용 저장 후 메인화면으로 전환
-                Intent main_intent = new Intent(context, Maintest_Activity.class);
+                Intent main_intent = new Intent(context, SettingActivity.class);
                 startActivity(main_intent);
                 Toast.makeText(context, "알람이 저장되었습니다.", Toast.LENGTH_LONG).show();
             }

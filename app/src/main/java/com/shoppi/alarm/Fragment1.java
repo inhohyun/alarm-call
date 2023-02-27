@@ -22,7 +22,7 @@ import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.room.Room;
 
-import com.shoppi.alarm.activity.Maintest_Activity;
+import com.shoppi.alarm.activity.SettingActivity;
 import com.shoppi.alarm.db.Alarm;
 import com.shoppi.alarm.db.AlarmDao;
 import com.shoppi.alarm.db.AlarmDatabase;
@@ -112,7 +112,7 @@ public class Fragment1 extends Fragment {
                 mAlarmDao.Insert(alarm);
 
                 //    저장 클릭시 데이터베이스에 알람 내용 저장 후 메인화면으로 전환
-                Intent main_intent = new Intent(getActivity(), Maintest_Activity.class);
+                Intent main_intent = new Intent(getActivity(), SettingActivity.class);
                 getActivity().startActivity(main_intent);
                 Toast.makeText(context, "알람이 저장되었습니다.", Toast.LENGTH_LONG).show();
 
