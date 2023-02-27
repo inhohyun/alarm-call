@@ -36,8 +36,6 @@ public class MainActivity extends AppCompatActivity {
     private String mNum;
     AlarmManager alarmmanager;
     Context context;
-    //  PendingIntent pendingIntent;
-    //private AlarmDatabase db;
 
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -48,7 +46,8 @@ public class MainActivity extends AppCompatActivity {
         this.context = this;
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_setting);
+
         save = (Button) findViewById(R.id.save); // 맨 마지막에 저장하는 버튼
         timePicker = (TimePicker) findViewById(R.id.time_picker); // 시간 설정
         alarmmanager = (AlarmManager) getSystemService(ALARM_SERVICE);
@@ -108,7 +107,6 @@ public class MainActivity extends AppCompatActivity {
                 alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
                         AlarmManager.INTERVAL_DAY, alarmIntent);
 
-                //timePicker에서 저장된 내용 가져오기, 필요한가 싶긴한데 일단 둠
                 timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
                     @Override
                     public void onTimeChanged(TimePicker view, int hour, int minute) {

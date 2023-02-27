@@ -24,8 +24,6 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.shoppi.alarm.Moon.WheaterActivity;
-import com.shoppi.alarm.Moon.weather2;
 import com.shoppi.alarm.db.Alarm;
 import com.shoppi.alarm.db.AlarmDatabase;
 import com.shoppi.alarm.list.RecyclerAdapter;
@@ -61,7 +59,7 @@ public class SettingActivity extends AppCompatActivity {
 //        기존 코드, 상속받은 AppCompatActivity이외의 코드도 동작함을 의미
 //        이 코드를 생략하면 이후로 작성된 코드만 동작함을 의미
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.alam_main);
+        setContentView(R.layout.activity_main);
 
         //전화권한이 없다면 권한 받기
         if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
@@ -69,26 +67,14 @@ public class SettingActivity extends AppCompatActivity {
         }
 
 
-        WheaterActivity.InitContext(this);
-        WheaterActivity w = new WheaterActivity();
-        w.Start();
 
         set_button = (Button) findViewById(R.id.alam_plus_btn);
         recyclerView = (RecyclerView) findViewById(R.id.rv_view);
-        weather = findViewById(R.id.btn_weather);
         MainTimerTask timerTask = new MainTimerTask();
         mTimer = new Timer();
         mTimer.schedule(timerTask, 500, 1000);
 
-        //날씨정보 버튼 클릭시
-        weather.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //클릭시 날씨정보 엑티비티로 화면전환
-                Intent weather_intent = new Intent(getApplicationContext(), weather2.class);
-                startActivity(weather_intent);
-            }
-        });
+
         initSwipe();
 
         //플러스 버튼 클릭시
